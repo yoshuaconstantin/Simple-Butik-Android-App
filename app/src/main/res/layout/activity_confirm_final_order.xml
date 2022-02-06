@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:id="@+id/rel1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_150sdp">
+
+        <RelativeLayout
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="@dimen/_100sdp"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true">
+            <soup.neumorphism.NeumorphCardView
+
+                android:id="@+id/carview3"
+                style="@style/Widget.Neumorph.CardView"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_130sdp"
+                android:padding="12dp"
+                app:neumorph_lightSource="leftTop"
+                app:neumorph_backgroundColor="@color/LightNeoBG"
+                app:neumorph_shadowColorDark="@color/LightneoShadow"
+                app:neumorph_shadowColorLight="@color/LIghtNeoLightShadow"
+                app:neumorph_shadowElevation="3dp"
+                app:neumorph_shapeAppearance="@style/CustomShapeAppearance"
+                app:neumorph_shapeType="pressed"
+                app:neumorph_inset="12dp"
+                app:neumorph_insetStart="12dp"
+                app:neumorph_insetEnd="12dp"
+                app:neumorph_insetTop="12dp"
+                app:neumorph_insetBottom="12dp"
+                app:neumorph_strokeWidth="1dp">
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/textsub"
+                        android:fontFamily="@font/highjakarta"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/_20ssp"
+                        android:text="SUB TOTAL PEMBAYARAN"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:textColor="@color/notallblack"/>
+                    <TextView
+                        android:id="@+id/totalbayar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_below="@id/textsub"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="Rp. 300.000"
+                        android:textColor="@color/notallblack"
+                        android:textSize="@dimen/_17ssp"
+                        android:fontFamily="@font/raleway_light"/>
+
+
+
+
+
+                </RelativeLayout>
+            </soup.neumorphism.NeumorphCardView>
+        </RelativeLayout>
+
+
+
+
+    </RelativeLayout><RelativeLayout
+    android:id="@+id/rel2"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_270sdp"
+    android:layout_below="@id/rel1"
+    >
+    <soup.neumorphism.NeumorphCardView
+        android:layout_centerHorizontal="true"
+        android:id="@+id/carview4"
+        style="@style/Widget.Neumorph.CardView"
+        android:layout_width="@dimen/_220sdp"
+        android:layout_height="match_parent"
+        android:padding="12dp"
+        app:neumorph_lightSource="leftTop"
+        app:neumorph_backgroundColor="@color/LightNeoBG"
+        app:neumorph_shadowColorDark="@color/LightneoShadow"
+        app:neumorph_shadowColorLight="@color/LIghtNeoLightShadow"
+        app:neumorph_shadowElevation="3dp"
+        app:neumorph_shapeAppearance="@style/CustomShapeAppearance"
+        app:neumorph_shapeType="pressed"
+        app:neumorph_inset="12dp"
+        app:neumorph_insetStart="12dp"
+        app:neumorph_insetEnd="12dp"
+        app:neumorph_insetTop="12dp"
+        app:neumorph_insetBottom="12dp"
+        app:neumorph_strokeWidth="2dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text1"
+                android:text="Jumlah barang :"
+                android:textSize="@dimen/_15ssp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:fontFamily="@font/raleway_light"
+                android:textColor="@color/notallblack"/>
+            <TextView
+                android:id="@+id/totalunit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="111"
+                android:textSize="@dimen/_15ssp"
+                android:textColor="@color/notallblack"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="@dimen/_15sdp"/>
+            <TextView
+                android:layout_margin="@dimen/_3sdp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="JANGAN TEKAN TOMBOL SEBELUM PEMBELI MEMBERIKAN UANG"
+                android:textSize="@dimen/_17ssp"
+                android:textAlignment="center"
+                android:fontFamily="@font/poesten"
+                android:textColor="@color/notallblack"/>
+
+
+
+
+
+
+        </RelativeLayout>
+    </soup.neumorphism.NeumorphCardView>
+
+
+
+</RelativeLayout>
+    <soup.neumorphism.NeumorphButton
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:visibility="visible"
+        android:id="@+id/confirm_final_order_btn"
+        android:layout_centerHorizontal="true"
+        android:layout_width="@dimen/_220sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimaryDark"
+        app:neumorph_lightSource="leftTop"
+        app:neumorph_backgroundColor="@color/LightNeoBG"
+        app:neumorph_shadowColorDark="@color/LightneoShadow"
+        app:neumorph_shadowColorLight="@color/LIghtNeoLightShadow"
+        android:textAlignment="textEnd"
+        android:textColor="@color/notallblack"
+        android:textSize="25dp"
+        />
+    <TextView
+        android:textColor="@color/notallblack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SUDAH BAYAR"
+        android:fontFamily="@font/poesten"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/_26sdp"
+        android:textAlignment="center"
+        android:textSize="@dimen/_15ssp"/>
+
+</RelativeLayout>
