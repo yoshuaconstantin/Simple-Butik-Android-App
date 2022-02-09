@@ -28,6 +28,7 @@
         <activity android:name="com.r0th.shopping.AdminNewOrdersActivity" />
         <activity android:name="com.r0th.shopping.AdminCategoryActivity" />
         <activity android:name="com.r0th.shopping.AdminAddNewProductActivity" />
+        <activity android:name="com.r0th.shopping.DataBarang_Admin" />
         <activity android:name="com.r0th.shopping.MainActivity"
             android:exported="true">
             <intent-filter>

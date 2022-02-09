@@ -7,9 +7,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -31,7 +33,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 public class AdminAddNewProductActivity extends AppCompatActivity {
-    private String CategoryName, Description, Price, Pname, saveCurrentDate, saveCurrentTime,stock;
+    private String CategoryName, Description, Price, Pname, saveCurrentDate, saveCurrentTime,stock,subcat;
     private Button AddNewProductButton;
     private ImageView InputProductImage;
     private EditText InputProductName, inputstock, InputProductPrice;
@@ -41,6 +43,8 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
     private StorageReference ProductImagesRef;
     private DatabaseReference ProductsRef;
     private ProgressDialog loadingBar;
+    private Spinner spinner,spinner2;
+    String spinnertext = "";
 
 
     @Override
@@ -48,7 +52,7 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_add_new_product);
-
+        spinner2 = (Spinner) findViewById(R.id.spinner1);
 
         CategoryName = getIntent().getExtras().get("category").toString();
         ProductImagesRef = FirebaseStorage.getInstance().getReference().child("Product Images");
@@ -58,11 +62,12 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
         AddNewProductButton = (Button) findViewById(R.id.add_new_product);
         InputProductImage = (ImageView) findViewById(R.id.select_product_image);
         InputProductName = (EditText) findViewById(R.id.product_name);
-        //InputProductDescription = (EditText) findViewById(R.id.product_description);
+
         inputstock=findViewById(R.id.product_description);
         InputProductPrice = (EditText) findViewById(R.id.product_price);
         loadingBar = new ProgressDialog(this);
 
+        spinner();
 
         InputProductImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,6 +109,7 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
          stock= inputstock.getText().toString();
         Price = InputProductPrice.getText().toString();
         Pname = InputProductName.getText().toString();
+        subcat = spinner.getSelectedItem().toString();
         if (ImageUri == null)
         {
             Toast.makeText(this, "Gambar Produk Dibutuhkan", Toast.LENGTH_SHORT).show();
@@ -188,13 +194,62 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
         });
 
     }
+
+    protected void spinner() {
+
+        spinner = (Spinner) findViewById(R.id.spinner1);
+        String resultcat = getIntent().getExtras().get("category").toString();
+
+        switch (resultcat){
+            case "Pakaian" :
+                String[] arraymodel = new String[] {
+                        "Top", "Bottom", "Dress"
+
+                };
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                        android.R.layout.simple_spinner_dropdown_item, arraymodel);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinner.setAdapter(adapter);
+            break;
+            case "Aksesoris" :
+                String[] arraymodel1 = new String[] {
+                        "Brooch", "Gelang", "Cincin","Strap Masker","Ring Hijab"
+                };
+                ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this,
+                        android.R.layout.simple_spinner_dropdown_item, arraymodel1);
+                adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinner.setAdapter(adapter1);
+                break;
+            case "Hijab" :
+                String[] arraymodel2 = new String[] {
+                        "Segi Empat", "Syari", "Bergo"
+                };
+                ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,
+                        android.R.layout.simple_spinner_dropdown_item, arraymodel2);
+                adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinner.setAdapter(adapter2);
+                break;
+            case "Alat Shalat" :
+                String[] arraymodel3 = new String[] {
+                        "Mukena", "Sajadah", "Tasbih"
+                };
+                ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(this,
+                        android.R.layout.simple_spinner_dropdown_item, arraymodel3);
+                adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinner.setAdapter(adapter3);
+                break;
+        }
+
+
+    }
+
     private void SaveProductInfoToDatabase()
     {
         HashMap<String, Object> productMap = new HashMap<>();
         productMap.put("pid", productRandomKey);
         productMap.put("date", saveCurrentDate);
         productMap.put("time", saveCurrentTime);
-        //productMap.put("description", Description);
+        productMap.put("description", subcat);
         productMap.put("image", downloadImageUrl);
         productMap.put("category", CategoryName);
         productMap.put("price", Price);

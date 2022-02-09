@@ -16,7 +16,7 @@
         android:fontFamily="@font/raleway_light"
         android:textColor="@color/notallblack"
         android:textAlignment="center"
-        android:textSize="26sp"
+        android:textSize="@dimen/_15ssp"
         android:textStyle="bold"
         />
     
@@ -62,9 +62,28 @@
                 app:neumorph_insetTop="12dp"
                 app:neumorph_insetBottom="12dp"
                 app:neumorph_strokeWidth="1dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
+                    <ImageView
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_100sdp"
+                        android:src="@drawable/gmbrpakaian"
+                        android:layout_centerInParent="true"/>
 
+                <TextView
+                    android:textColor="@color/notallblack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pakaian"
+                    android:textSize="@dimen/_20ssp"
+                    android:fontFamily="@font/poesten"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="@dimen/_10sdp"/>
 
+                </RelativeLayout>
 
             </soup.neumorphism.NeumorphCardView>
 
@@ -93,7 +112,28 @@
                 app:neumorph_insetTop="12dp"
                 app:neumorph_insetBottom="12dp"
                 app:neumorph_strokeWidth="1dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
+                    <ImageView
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_100sdp"
+                        android:src="@drawable/gmbraksesoris"
+                        android:layout_centerInParent="true"/>
+
+                    <TextView
+                        android:textColor="@color/notallblack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Aksesoris"
+                        android:textSize="@dimen/_20ssp"
+                        android:fontFamily="@font/poesten"
+                        android:layout_centerHorizontal="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="@dimen/_10sdp"/>
+
+                </RelativeLayout>
 
 
 
@@ -142,7 +182,28 @@
                     app:neumorph_insetTop="12dp"
                     app:neumorph_insetBottom="12dp"
                     app:neumorph_strokeWidth="1dp">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
+                        <ImageView
+                            android:layout_width="@dimen/_100sdp"
+                            android:layout_height="@dimen/_60sdp"
+                            android:src="@drawable/gmbrhijab"
+                            android:layout_centerInParent="true"/>
+
+                        <TextView
+                            android:textColor="@color/notallblack"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Hijab"
+                            android:textSize="@dimen/_20ssp"
+                            android:fontFamily="@font/poesten"
+                            android:layout_centerHorizontal="true"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginBottom="@dimen/_10sdp"/>
+
+                    </RelativeLayout>
 
 
 
@@ -173,7 +234,28 @@
                     app:neumorph_insetTop="12dp"
                     app:neumorph_insetBottom="12dp"
                     app:neumorph_strokeWidth="1dp">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
+                        <ImageView
+                            android:layout_width="@dimen/_100sdp"
+                            android:layout_height="@dimen/_100sdp"
+                            android:src="@drawable/gmbrmukena"
+                            android:layout_centerInParent="true"/>
+
+                        <TextView
+                            android:textColor="@color/notallblack"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Alat Shalat"
+                            android:textSize="@dimen/_20ssp"
+                            android:fontFamily="@font/poesten"
+                            android:layout_centerHorizontal="true"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginBottom="@dimen/_10sdp"/>
+
+                    </RelativeLayout>
 
 
 

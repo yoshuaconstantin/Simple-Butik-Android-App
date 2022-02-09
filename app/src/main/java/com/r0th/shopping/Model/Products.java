@@ -1,6 +1,7 @@
 package com.r0th.shopping.Model;
 
 
+import androidx.recyclerview.widget.RecyclerView;
 
 public class Products {
     private String pname, description, price, image, category, pid, date, time,stock;

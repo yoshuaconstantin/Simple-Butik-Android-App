@@ -12,14 +12,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.r0th.shopping.Model.Cart;
+import com.r0th.shopping.Model.Products;
 
 import java.util.List;
 
 public class data_item_barang_admin extends RecyclerView.Adapter<data_item_barang_admin.ViewHolder> {
     private Context context;
-    private List<Cart> items;
+    private List<Products> items;
 
-    public data_item_barang_admin(Context context, List<Cart> carts){
+    public data_item_barang_admin(Context context, List<Products> carts){
         this.context = context;
         this.items = items;
     }
@@ -33,8 +34,12 @@ public class data_item_barang_admin extends RecyclerView.Adapter<data_item_baran
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        final Cart item = items.get(position);
-        holder.rvnamabrng.setText(item);
+        final Products item = items.get(position);
+        holder.rvnamabrng.setText(item.getPname());
+        holder.rvhargabrng.setText(item.getPrice());
+        holder.rvstockbrng.setText(item.getStock());
+        //holder.rvimg.setText(item.getImage());
+
 
     }
 
@@ -49,13 +54,14 @@ public class data_item_barang_admin extends RecyclerView.Adapter<data_item_baran
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             rvnamabrng = itemView.findViewById(R.id.product_name);
-            rvhargabrng = itemView.findViewById(R.id.product_name);
-            rvstockbrng = itemView.findViewById(R.id.product_name);
-            rvdesc = itemView.findViewById(R.id.product_name);
-            rvcategory = itemView.findViewById(R.id.product_name);
-            rvdate = itemView.findViewById(R.id.product_name);
-            rvtime = itemView.findViewById(R.id.product_name);
-            rvgetpid = itemView.findViewById(R.id.product_name);
+            rvhargabrng = itemView.findViewById(R.id.product_price);
+            rvstockbrng = itemView.findViewById(R.id.product_description);
+           //rvimg =  itemView.findViewById(R.id.product_image);
+//            rvdesc = itemView.findViewById(R.id.product_name);
+//            rvcategory = itemView.findViewById(R.id.product_name);
+//            rvdate = itemView.findViewById(R.id.product_name);
+//            rvtime = itemView.findViewById(R.id.product_name);
+//            rvgetpid = itemView.findViewById(R.id.product_name);
         }
     }
 }

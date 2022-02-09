@@ -1,18 +1,21 @@
 package com.r0th.shopping.Model;
 
 public class pembukuan_data_item {
-    private String tanggal,totaltransaksi,totalunit,kategori;
+    private String tanggal,totaltransaksi,totalunit,pakaian,alatshalat,hijab,aksesoris;
 
 
     public pembukuan_data_item(){
 
     }
 
-    public pembukuan_data_item(String tanggal, String totaltransaksi, String totalunit, String kategori) {
+    public pembukuan_data_item(String tanggal, String totaltransaksi, String totalunit, String pakaian, String alatshalat, String hijab, String aksesoris) {
         this.tanggal = tanggal;
         this.totaltransaksi = totaltransaksi;
         this.totalunit = totalunit;
-        this.kategori = kategori;
+        this.pakaian = pakaian;
+        this.alatshalat = alatshalat;
+        this.hijab = hijab;
+        this.aksesoris = aksesoris;
     }
 
     public String getTanggal() {
@@ -39,11 +42,35 @@ public class pembukuan_data_item {
         this.totalunit = totalunit;
     }
 
-    public String getKategori() {
-        return kategori;
+    public String getPakaian() {
+        return pakaian;
     }
 
-    public void setKategori(String kategori) {
-        this.kategori = kategori;
+    public void setPakaian(String pakaian) {
+        this.pakaian = pakaian;
+    }
+
+    public String getAlatshalat() {
+        return alatshalat;
+    }
+
+    public void setAlatshalat(String alatshalat) {
+        this.alatshalat = alatshalat;
+    }
+
+    public String getHijab() {
+        return hijab;
+    }
+
+    public void setHijab(String hijab) {
+        this.hijab = hijab;
+    }
+
+    public String getAksesoris() {
+        return aksesoris;
+    }
+
+    public void setAksesoris(String aksesoris) {
+        this.aksesoris = aksesoris;
     }
 }

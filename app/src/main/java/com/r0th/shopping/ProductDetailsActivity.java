@@ -28,12 +28,14 @@ import java.util.Calendar;
 import java.util.HashMap;
 
 public class ProductDetailsActivity extends AppCompatActivity {
+    private DatabaseReference ProductsRef;
     private Button addToCartButton;
     private ImageView productImage;
     private ElegantNumberButton numberButton;
     private TextView productPrice,productDescription,productName;
     private String productID="", state = "Normal";
     int stock = 0;
+    String kategori = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,18 @@ public class ProductDetailsActivity extends AppCompatActivity {
         productDescription = (TextView) findViewById(R.id.product_description_details);
         productPrice = (TextView) findViewById(R.id.product_price_details);
         getProductDetails(productID);
+        ProductsRef = FirebaseDatabase.getInstance().getReference().child("Products");
+        ProductsRef.child(productID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                kategori = (String) snapshot.child("category").getValue();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         addToCartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,12 +94,13 @@ public class ProductDetailsActivity extends AppCompatActivity {
         cartMap.put("time",saveCurrentTime);
         cartMap.put("quantity",numberButton.getNumber());
         cartMap.put("discount","");
+        cartMap.put("category",kategori);
 
-        cartListRef.child("User view").child(Prevalent.currentOnlineUser.getPhone()).child("Products").child(productID).updateChildren(cartMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+        cartListRef.child("User view").child("Products").child(productID).updateChildren(cartMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()){
-                    cartListRef.child("Admin view").child(Prevalent.currentOnlineUser.getPhone())
+                    cartListRef.child("Admin view")
                             .child("Products").child(productID)
                             .updateChildren(cartMap)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
