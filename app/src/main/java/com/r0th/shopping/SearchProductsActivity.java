@@ -31,6 +31,7 @@ public class SearchProductsActivity extends AppCompatActivity {
     private EditText inputText;
     private RecyclerView searchList;
     private String searchInput;
+    String test = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,7 @@ public class SearchProductsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 searchInput = inputText.getText().toString();
+                test="Hijab muslimah";
                 onStart();
 
 
@@ -58,7 +60,7 @@ public class SearchProductsActivity extends AppCompatActivity {
         super.onStart();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Products");
         FirebaseRecyclerOptions<Products> options = new FirebaseRecyclerOptions.Builder<Products>()
-                .setQuery(reference.orderByChild("pname").startAt(searchInput), Products.class)
+                .setQuery(reference.orderByChild("pname").startAt(test), Products.class)
                 .build();
         FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter =
                 new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {

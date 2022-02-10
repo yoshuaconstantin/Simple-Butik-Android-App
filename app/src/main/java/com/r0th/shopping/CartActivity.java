@@ -61,7 +61,6 @@ public class CartActivity extends AppCompatActivity{
         NextProcessBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(CartActivity.this, " " +testtt, Toast.LENGTH_SHORT).show();
                 //txtTotalAmount.setText("Total Price = IDR."+String.valueOf(overTotalPrice));
                 Intent intent = new Intent(CartActivity.this,ConfirmFinalOrderActivity.class);
                 intent.putExtra("Total Price", String.valueOf(overTotalPrice));
@@ -143,7 +142,6 @@ public class CartActivity extends AppCompatActivity{
                                 }
                                 if (i==1){
                                     cartListRef.child("User view")
-                                            .child(Prevalent.currentOnlineUser.getPhone())
                                             .child("Products")
                                             .child(model.getPid())
                                             .removeValue()
@@ -158,7 +156,6 @@ public class CartActivity extends AppCompatActivity{
                                                 }
                                             });
                                     cartListRef.child("Admin view")
-                                            .child(Prevalent.currentOnlineUser.getPhone())
                                             .child("Products")
                                             .child(model.getPid())
                                             .removeValue()

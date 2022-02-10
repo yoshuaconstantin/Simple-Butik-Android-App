@@ -44,13 +44,13 @@
         <TextView
             android:fontFamily="@font/poesten"
             android:id="@+id/product_name"
-            android:layout_width="@dimen/_150sdp"
+            android:layout_width="@dimen/_200sdp"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/product_image"
             android:text="NAMA PRODUK"
             android:layout_marginLeft="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_10sdp"
-            android:textSize="@dimen/_17ssp"/>
+            android:textSize="@dimen/_15ssp"/>
 
         <TextView
             android:id="@+id/product_description"
@@ -75,19 +75,9 @@
             android:layout_toEndOf="@id/product_image"
             android:layout_marginLeft="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_1sdp"
-            android:textSize="@dimen/_17ssp"/>
+            android:textSize="@dimen/_15ssp"/>
 
-        <RelativeLayout
-            android:layout_marginRight="@dimen/_10sdp"
-            android:layout_centerVertical="true"
-            android:layout_width="@dimen/_50sdp"
-            android:layout_height="@dimen/_50sdp"
-            android:layout_alignParentEnd="true">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/arrow"/>
-        </RelativeLayout>
+
 
 
 
