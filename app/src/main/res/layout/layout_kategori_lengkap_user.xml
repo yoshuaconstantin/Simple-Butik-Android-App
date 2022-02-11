@@ -4,94 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdminCategoryActivity"
-    android:background="@color/transparent">
-    <RelativeLayout
+    tools:context=".AdminCategoryActivity">
+    <TextView
+        android:id="@+id/slogan_category"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_60sdp"
-        android:id="@+id/rel0"
-        android:background="@drawable/bluesquarecorner">
-        <soup.neumorphism.NeumorphCardView
-
-            android:id="@+id/neu1"
-            style="@style/Widget.Neumorph.CardView"
-            android:layout_width="@dimen/_170sdp"
-            android:layout_height="match_parent"
-            android:padding="12dp"
-            app:neumorph_lightSource="leftTop"
-            app:neumorph_backgroundColor="@color/LightNeoBG"
-            app:neumorph_shadowColorDark="@color/LightneoShadow"
-            app:neumorph_shadowColorLight="@color/LIghtNeoLightShadow"
-            app:neumorph_shadowElevation="3dp"
-            app:neumorph_shapeAppearance="@style/CustomShapeAppearance"
-            app:neumorph_shapeType="pressed"
-            app:neumorph_inset="12dp"
-            app:neumorph_insetStart="12dp"
-            app:neumorph_insetEnd="12dp"
-            app:neumorph_insetTop="12dp"
-            app:neumorph_insetBottom="12dp"
-            app:neumorph_strokeWidth="1dp">
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <EditText
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="@dimen/_2sdp"
-                    android:id="@+id/search_product_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="Kategori Produk"
-                    android:textSize="@dimen/_15ssp"
-                    android:textStyle="bold"
-                    android:background="@android:color/transparent"
-                    android:layout_marginStart="5dp"
-                    android:layout_centerVertical="true"
-                    android:padding="9dp"
-                    android:textColorHint="@color/notallblack" />
-
-
-            </RelativeLayout>
-
-        </soup.neumorphism.NeumorphCardView>
-        <soup.neumorphism.NeumorphButton
-            android:layout_marginBottom="@dimen/_10sdp"
-            android:visibility="visible"
-            android:id="@+id/search_btn"
-            android:layout_centerHorizontal="true"
-            android:layout_width="@dimen/_100sdp"
-            android:layout_height="match_parent"
-            android:layout_alignParentBottom="true"
-            android:background="@color/colorPrimaryDark"
-            app:neumorph_lightSource="leftTop"
-            app:neumorph_backgroundColor="@color/LightNeoBG"
-            app:neumorph_shadowColorDark="@color/LightneoShadow"
-            app:neumorph_shadowColorLight="@color/LIghtNeoLightShadow"
-            android:textAlignment="textEnd"
-            android:textColor="@color/notallblack"
-            android:textSize="25dp"
-            android:layout_toRightOf="@+id/neu1"
-            />
-        <TextView
-            android:layout_marginLeft="@dimen/_35sdp"
-            android:textColor="@color/notallblack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cari"
-            android:fontFamily="@font/poesten"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="@dimen/_26sdp"
-            android:textAlignment="center"
-            android:textSize="@dimen/_15ssp"
-            android:layout_toRightOf="@+id/neu1"/>
-
-
-
-    </RelativeLayout>
-
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="KATEGORI"
+        android:fontFamily="@font/raleway_light"
+        android:textColor="@color/notallblack"
+        android:textAlignment="center"
+        android:textSize="@dimen/_15ssp"
+        android:textStyle="bold"
+        />
 
     <RelativeLayout
         android:id="@+id/rel1"
-        android:layout_below="@id/rel0"
+        android:layout_below="@id/slogan_category"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_50sdp">
 
@@ -113,7 +44,7 @@
                 android:layout_weight="1">
                 <soup.neumorphism.NeumorphCardView
 
-                    android:id="@+id/kategoripakaianadm"
+                    android:id="@+id/kategoripakaian"
                     style="@style/Widget.Neumorph.CardView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -143,7 +74,7 @@
                             android:textSize="@dimen/_15ssp"
                             android:fontFamily="@font/poesten"
                             android:layout_centerHorizontal="true"
-                            android:layout_centerInParent="true"
+                            android:layout_alignParentBottom="true"
                             />
 
                     </RelativeLayout>
@@ -157,7 +88,7 @@
                 android:layout_weight="1">
                 <soup.neumorphism.NeumorphCardView
 
-                    android:id="@+id/kategoriaksesorisadm"
+                    android:id="@+id/kategoriaksesoris"
                     style="@style/Widget.Neumorph.CardView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -186,8 +117,8 @@
                             android:text="Aksesoris"
                             android:textSize="@dimen/_15ssp"
                             android:fontFamily="@font/poesten"
-                            android:layout_centerInParent="true"
-                             />
+                            android:layout_centerHorizontal="true"
+                            />
 
                     </RelativeLayout>
 
@@ -220,7 +151,7 @@
                 android:layout_weight="1">
                 <soup.neumorphism.NeumorphCardView
 
-                    android:id="@+id/kategorihijabadm"
+                    android:id="@+id/kategorihijab"
                     style="@style/Widget.Neumorph.CardView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -249,7 +180,7 @@
                             android:text="Hijab"
                             android:textSize="@dimen/_15ssp"
                             android:fontFamily="@font/poesten"
-                            android:layout_centerInParent="true"
+                            android:layout_centerHorizontal="true"
 
                             />
 
@@ -266,7 +197,7 @@
                 android:layout_weight="1">
                 <soup.neumorphism.NeumorphCardView
 
-                    android:id="@+id/kategorialsoladm"
+                    android:id="@+id/kategorialsol"
                     style="@style/Widget.Neumorph.CardView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -295,8 +226,8 @@
                             android:text="Alat Shalat"
                             android:textSize="@dimen/_15ssp"
                             android:fontFamily="@font/poesten"
-                            android:layout_centerInParent="true"
-                           />
+                            android:layout_centerHorizontal="true"
+                            />
 
                     </RelativeLayout>
 
@@ -311,7 +242,7 @@
 
     </RelativeLayout>
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/relkategoriadm"
+        android:id="@+id/relkategori"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/rel2"/>

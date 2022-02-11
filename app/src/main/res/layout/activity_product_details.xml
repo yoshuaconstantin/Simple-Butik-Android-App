@@ -61,16 +61,33 @@
         >
 
     </com.cepheuen.elegantnumberbutton.view.ElegantNumberButton>
-
-    <Button
+    <soup.neumorphism.NeumorphButton
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:visibility="visible"
         android:id="@+id/pd_add_to_cart_button"
+        android:layout_centerHorizontal="true"
+        android:layout_width="@dimen/_220sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimaryDark"
+        app:neumorph_lightSource="leftTop"
+        app:neumorph_backgroundColor="@color/LightNeoBG"
+        app:neumorph_shadowColorDark="@color/LightneoShadow"
+        app:neumorph_shadowColorLight="@color/LIghtNeoLightShadow"
+        android:textAlignment="textEnd"
+        android:textColor="@color/notallblack"
+        android:textSize="25dp"
+        />
+    <TextView
+        android:textColor="@color/notallblack"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
-        android:layout_margin="15dp"
+        android:text="Tambah Keranjang"
+        android:fontFamily="@font/poesten"
         android:layout_alignParentBottom="true"
-        android:text="Add to Cart"
-        android:textColor="@android:color/white"
-        android:textSize="18dp"
-        />
+        android:layout_marginBottom="@dimen/_26sdp"
+        android:textAlignment="center"
+        android:textSize="@dimen/_15ssp"/>
+
+
 </RelativeLayout>

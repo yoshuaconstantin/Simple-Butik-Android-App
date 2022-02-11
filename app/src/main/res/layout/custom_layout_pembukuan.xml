@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_170sdp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/transparent">
+    <RelativeLayout
+        android:layout_marginRight="@dimen/_5sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_170sdp">
+        <soup.neumorphism.NeumorphCardView
+
+            android:id="@+id/carview3"
+            style="@style/Widget.Neumorph.CardView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_170sdp"
+            android:padding="12dp"
+            app:neumorph_lightSource="leftTop"
+            app:neumorph_backgroundColor="@color/LightNeoBG"
+            app:neumorph_shadowColorDark="@color/LightneoShadow"
+            app:neumorph_shadowColorLight="@color/LIghtNeoLightShadow"
+            app:neumorph_shadowElevation="3dp"
+            app:neumorph_shapeAppearance="@style/CustomShapeAppearance"
+            app:neumorph_shapeType="pressed"
+            app:neumorph_inset="12dp"
+            app:neumorph_insetStart="12dp"
+            app:neumorph_insetEnd="12dp"
+            app:neumorph_insetTop="12dp"
+            app:neumorph_insetBottom="12dp"
+            app:neumorph_strokeWidth="1dp"/>
+        <TextView
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:fontFamily="@font/poesten"
+            android:id="@+id/texttanggal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Data Tanggal :"
+            android:textSize="@dimen/_13ssp"
+            android:textColor="@color/notallblack"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginLeft="@dimen/_22sdp"/>
+
+        <TextView
+            android:fontFamily="@font/poesten"
+            android:id="@+id/txttanggal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="date"
+            android:layout_toEndOf="@id/texttanggal"
+            android:textSize="@dimen/_13ssp"
+            android:textColor="@color/notallblack"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginLeft="@dimen/_15sdp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/texttanggal"
+            android:weightSum="2">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/txthijab"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="@dimen/_22sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:text="hijab : 1111"
+                        android:textColor="@color/notallblack"
+                        android:textSize="@dimen/_12ssp" />
+                    <TextView
+                        android:layout_centerHorizontal="true"
+                        android:id="@+id/txtpakaian"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="pakaian : 1111"
+                        android:layout_below="@id/txthijab"
+                        android:textSize="@dimen/_12ssp"
+                        android:textColor="@color/notallblack"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginLeft="@dimen/_22sdp"/>
+                    <TextView
+                        android:layout_centerHorizontal="true"
+                        android:id="@+id/txtaksesoris"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="aksesoris : 1111"
+                        android:layout_below="@id/txtpakaian"
+                        android:textSize="@dimen/_12ssp"
+                        android:textColor="@color/notallblack"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginLeft="@dimen/_22sdp"/>
+                    <TextView
+                        android:layout_centerHorizontal="true"
+                        android:id="@+id/txtalsol"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Alat Shalat : 1111"
+                        android:layout_below="@id/txtaksesoris"
+                        android:textSize="@dimen/_12ssp"
+                        android:textColor="@color/notallblack"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginLeft="@dimen/_22sdp"/>
+                </RelativeLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TOTAL TRANSAKSI"
+                        android:textColor="@color/notallblack"
+                        android:layout_centerHorizontal="true"
+                        android:textSize="@dimen/_15ssp"
+                        android:fontFamily="@font/poesten"
+                        android:id="@+id/totaldisplaytrx"/>
+                    <TextView
+                        android:id="@+id/datatotaltrx"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_below="@id/totaldisplaytrx"
+                        android:text="Rp. 10.200.000"
+                        android:textSize="@dimen/_15ssp"
+                        android:textColor="@color/notallblack"
+                        android:fontFamily="@font/raleway_light"
+                        android:layout_marginTop="@dimen/_8sdp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TOTAL UNIT"
+                        android:textColor="@color/notallblack"
+                        android:layout_below="@id/datatotaltrx"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:textSize="@dimen/_15ssp"
+                        android:fontFamily="@font/poesten"
+                        android:id="@+id/totalunitdisplay"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="11111"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/notallblack"
+                        android:fontFamily="@font/raleway_light"
+                        android:textSize="@dimen/_15ssp"
+                        android:id="@+id/datatotalunit"
+                        android:layout_below="@id/totalunitdisplay"
+                        android:layout_marginTop="@dimen/_5sdp"/>
+
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

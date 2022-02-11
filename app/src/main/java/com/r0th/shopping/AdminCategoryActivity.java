@@ -47,7 +47,7 @@ public class AdminCategoryActivity extends AppCompatActivity {
         CheckOrdersBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(AdminCategoryActivity.this,AdminNewOrdersActivity.class);
+                Intent intent= new Intent(AdminCategoryActivity.this,Pembukuan_admin.class);
                 startActivity(intent);
             }
         });

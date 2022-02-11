@@ -4,16 +4,12 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -27,13 +23,15 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.r0th.shopping.Model.Products;
-import com.r0th.shopping.Prevalent.Prevalent;
 import com.r0th.shopping.ViewHolder.DataBarang_adminViewHolder;
 import com.r0th.shopping.ViewHolder.ProductViewHolder;
 import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
 import java.util.List;
+
+import soup.neumorphism.NeumorphButton;
+import soup.neumorphism.NeumorphCardView;
 
 public class DataBarang_Admin extends AppCompatActivity {
     private RecyclerView recyclerView;
@@ -48,12 +46,16 @@ public class DataBarang_Admin extends AppCompatActivity {
     FirebaseRecyclerAdapter<Products, DataBarang_adminViewHolder> adapter2;
     EditText kolomsearch;
     Button search;
+    NeumorphCardView cat1,cat2,cat3,cat4;
+    String pencarian="";
+    String pencarianlower="";
+    String allsearch="";
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search_products);
-        recyclerView = findViewById(R.id.search_list);
+        setContentView(R.layout.layout_kategori_lengkap);
+        recyclerView = findViewById(R.id.relkategoriadm);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -61,24 +63,87 @@ public class DataBarang_Admin extends AppCompatActivity {
         reference = database.getReference("Products");
         RefCart = database.getReference("Cart List");
         kolomsearch = findViewById(R.id.search_product_name);
+        cat1 = findViewById(R.id.kategoripakaianadm);
+        cat2 = findViewById(R.id.kategoriaksesorisadm);
+        cat3 = findViewById(R.id.kategorihijabadm);
+        cat4 = findViewById(R.id.kategorialsoladm);
+
+        cat1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pencarian = "Pakaian";
+                kategorisearch();
+            }
+        });
+        cat2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pencarian = "Aksesoris";
+                kategorisearch();
+            }
+        });
+        cat3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pencarian = "Hijab";
+                kategorisearch();
+            }
+        });
+        cat4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pencarian = "Alat Shalat";
+                kategorisearch();
+            }
+        });
         search= findViewById(R.id.search_btn);
 
-        setHasOptionsMenu(true);
-        showtask();
 
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 searchInput = kolomsearch.getText().toString();
+                allsearch=searchInput;
                 pencarian();
             }
         });
+        setHasOptionsMenu(true);
+        onStart();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+        options = new FirebaseRecyclerOptions.Builder<Products>()
+                .setQuery(reference, Products.class)
+                .build();
+
+        adapter2 = new FirebaseRecyclerAdapter<Products, DataBarang_adminViewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull DataBarang_adminViewHolder dataBarang_adminViewHolder, int i, @NonNull Products products) {
+                DecimalFormat decim = new DecimalFormat("#,###.##");
+                int y = Integer.parseInt(products.getPrice());
+                dataBarang_adminViewHolder.rvnmbarang.setText(products.getPname());
+                dataBarang_adminViewHolder.rvstockbrng.setText("Stock : "+products.getStock());
+                dataBarang_adminViewHolder.rvhargabrng.setText("Rp."+decim.format(y));
+                Picasso.get().load(products.getImage()).into(dataBarang_adminViewHolder.imageView);
+            }
+
+
+
+
+            @NonNull
+            @Override
+            public DataBarang_adminViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View itemview = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.product_items_layout, parent, false);
+                return new DataBarang_adminViewHolder(itemview);
+            }
+        };
         adapter2.startListening();
+        recyclerView.setAdapter(adapter2);
+        adapter2.notifyDataSetChanged();
+        recyclerView.getViewTreeObserver();
 
     }
 
@@ -99,7 +164,40 @@ public class DataBarang_Admin extends AppCompatActivity {
     }
     public void showtask(){
         options = new FirebaseRecyclerOptions.Builder<Products>()
-                .setQuery(reference, Products.class)
+                .setQuery(reference.orderByChild("pname").equalTo(allsearch), Products.class)
+                .build();
+
+        adapter2 = new FirebaseRecyclerAdapter<Products, DataBarang_adminViewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull DataBarang_adminViewHolder dataBarang_adminViewHolder, int i, @NonNull Products products) {
+                DecimalFormat decim = new DecimalFormat("#,###.##");
+                int y = Integer.parseInt(products.getPrice());
+                dataBarang_adminViewHolder.rvnmbarang.setText(products.getPname());
+                dataBarang_adminViewHolder.rvstockbrng.setText("Stock : "+products.getStock());
+                dataBarang_adminViewHolder.rvhargabrng.setText("Rp."+decim.format(y));
+                Picasso.get().load(products.getImage()).into(dataBarang_adminViewHolder.imageView);
+            }
+
+
+
+
+            @NonNull
+            @Override
+            public DataBarang_adminViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View itemview = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.product_items_layout, parent, false);
+                return new DataBarang_adminViewHolder(itemview);
+            }
+        };
+        adapter2.startListening();
+        recyclerView.setAdapter(adapter2);
+        adapter2.notifyDataSetChanged();
+        recyclerView.getViewTreeObserver();
+
+    }
+    private void kategorisearch(){
+        options = new FirebaseRecyclerOptions.Builder<Products>()
+                .setQuery(reference.orderByChild("category").equalTo(pencarian), Products.class)
                 .build();
 
         adapter2 = new FirebaseRecyclerAdapter<Products, DataBarang_adminViewHolder>(options) {
@@ -199,47 +297,36 @@ public class DataBarang_Admin extends AppCompatActivity {
     }
 
     public void pencarian(){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Products");
-        FirebaseRecyclerOptions<Products> options = new FirebaseRecyclerOptions.Builder<Products>()
-                .setQuery(reference.orderByChild("pname").startAt(searchInput), Products.class)
+        options = new FirebaseRecyclerOptions.Builder<Products>()
+                .setQuery(reference.orderByChild("pname").startAt(allsearch), Products.class)
                 .build();
-        FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter =
-                new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
-                    @Override
-                    protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull final Products model) {
-                        int i = Integer.parseInt(model.getPrice());
-                        DecimalFormat decim = new DecimalFormat("#,###.##");
-                        holder.txtProductName.setText(model.getPname());
-                        holder.stock.setText(model.getStock());
-                        holder.txtProductPrice.setText("Rp. "+decim.format(i) + " IDR.");
-                        Picasso.get().load(model.getImage()).into(holder.imageView);
-                        holder.itemView.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                //showUpdateDialog(adapter2.getRef(item.getOrder()).getKey(), adapter2.getItem(item.getOrder()));
-                                holder.itemView.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
-                                        Toast.makeText(DataBarang_Admin.this, " name "+model.getPname(), Toast.LENGTH_SHORT).show();
-                                    }
-                                });
 
-                            }
-                        });
+        adapter2 = new FirebaseRecyclerAdapter<Products, DataBarang_adminViewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull DataBarang_adminViewHolder dataBarang_adminViewHolder, int i, @NonNull Products products) {
+                DecimalFormat decim = new DecimalFormat("#,###.##");
+                int y = Integer.parseInt(products.getPrice());
+                dataBarang_adminViewHolder.rvnmbarang.setText(products.getPname());
+                dataBarang_adminViewHolder.rvstockbrng.setText("Stock : "+products.getStock());
+                dataBarang_adminViewHolder.rvhargabrng.setText("Rp."+decim.format(y));
+                Picasso.get().load(products.getImage()).into(dataBarang_adminViewHolder.imageView);
+            }
 
-                    }
 
-                    @NonNull
-                    @Override
-                    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_items_layout, parent, false);
-                        ProductViewHolder holder = new ProductViewHolder(view);
-                        return holder;
-                    }
-                };
-        recyclerView.setAdapter(adapter);
-        adapter.startListening();
 
+
+            @NonNull
+            @Override
+            public DataBarang_adminViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View itemview = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.product_items_layout, parent, false);
+                return new DataBarang_adminViewHolder(itemview);
+            }
+        };
+        adapter2.startListening();
+        recyclerView.setAdapter(adapter2);
+        adapter2.notifyDataSetChanged();
+        recyclerView.getViewTreeObserver();
 
     }
 

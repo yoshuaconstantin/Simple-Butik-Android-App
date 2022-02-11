@@ -107,7 +107,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()){
-                                        Toast.makeText(ProductDetailsActivity.this,"Added to cart List",Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(ProductDetailsActivity.this,"Di tambahkan di keranjang..!",Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(ProductDetailsActivity.this,HomeActivity.class);
                                         startActivity(intent);
                                     }

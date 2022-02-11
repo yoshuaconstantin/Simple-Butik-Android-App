@@ -41,7 +41,7 @@ public class CartActivity extends AppCompatActivity{
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private Button NextProcessBtn,Bayar;
-    private TextView txtTotalAmount, txtMsg1;
+    private TextView txtTotalAmount, txtMsg1,txtchkt;
     TextView totalhargadisplay;
     private int overTotalPrice=0;
     private int overTotalQuantity=0;
@@ -57,6 +57,7 @@ public class CartActivity extends AppCompatActivity{
         NextProcessBtn = (Button)findViewById(R.id.next_btn);
         txtTotalAmount = (TextView)findViewById(R.id.total_price);
         txtMsg1 = (TextView)findViewById(R.id.msg1);
+        txtchkt = findViewById(R.id.textcheckout);
         totalhargadisplay=findViewById(R.id.cartproducttotalprice);
         NextProcessBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -191,8 +192,10 @@ public class CartActivity extends AppCompatActivity{
                 if (snapshot.exists()){
                     //Toast.makeText(CartActivity.this,"1",Toast.LENGTH_SHORT).show();
                     Bayar.setVisibility(View.VISIBLE);
+                    txtchkt.setVisibility(View.VISIBLE);
                 }else {
                     Bayar.setVisibility(View.GONE);
+                    txtchkt.setVisibility(View.GONE);
                 }//Toast.makeText(CartActivity.this,"2",Toast.LENGTH_SHORT).show();
             }
 
