@@ -122,11 +122,12 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginRight="@dimen/_15sdp"/>
             <TextView
+                android:id="@+id/printstruk"
                 android:layout_margin="@dimen/_3sdp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="JANGAN TEKAN TOMBOL SEBELUM PEMBELI MEMBERIKAN UANG"
+                android:text="Struk preview"
                 android:textSize="@dimen/_17ssp"
                 android:textAlignment="center"
                 android:fontFamily="@font/poesten"
@@ -161,6 +162,7 @@
         android:textSize="25dp"
         />
     <TextView
+        android:id="@+id/txtbayar"
         android:textColor="@color/notallblack"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -60,7 +60,7 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
     String totalunitcart="";
 
 
-    private TextView totbay;
+    private TextView totbay,printstruk;
     private TextView totunit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +73,17 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
         totbay=findViewById(R.id.totalbayar);
         totunit=findViewById(R.id.totalunit);
         int i = Integer.parseInt(totalAmount);
+        printstruk = findViewById(R.id.printstruk);
+        printstruk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ConfirmFinalOrderActivity.this, printstruk.class);
+                intent.putExtra("Total Price", String.valueOf(totalAmount));
+                intent.putExtra("Total Quantity", String.valueOf(totalQuantity));
+                startActivity(intent);
+            }
+        });
+
         DecimalFormat decim = new DecimalFormat("#,###.##");
         totbay.setText("Rp. "+decim.format(i));
         totunit.setText(totalQuantity);
@@ -109,34 +120,37 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
                     ProductsRef.child(bulan2).child(hari).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            ambildatacart();
-                            Handler handler = new Handler();
-                            Runnable runnable = new Runnable() {
-                                @Override
-                                public void run() {
-                                    int htnghijab,htngaksesoris,htngalatshlt,htngpakaian,htngtotal,htngtotalunit = 0;
-                                    String hijab1 = snapshot.child("hijab").getValue(String.class);
-                                    String aksesoris1 = snapshot.child("aksesoris").getValue(String.class);
-                                    String alatshalat1 = snapshot.child("alatshalat").getValue(String.class);
-                                    String pakaian1 = snapshot.child("pakaian").getValue(String.class);
-                                    String totaltransaksi = snapshot.child("totaltransaksi").getValue(String.class);
-                                    String totalunit = snapshot.child("totalunit").getValue(String.class);
-                                    //hitung
-                                    htnghijab = Integer.parseInt(hijab1) + Integer.parseInt(hijabcart);
-                                    htngaksesoris = Integer.parseInt(aksesoris1) + Integer.parseInt(aksesoriscart);
-                                    htngalatshlt = Integer.parseInt(alatshalat1) + Integer.parseInt(alsolatcart);
-                                    htngpakaian = Integer.parseInt(pakaian1) + Integer.parseInt(pakaiancart);
-                                    htngtotal = Integer.parseInt(totaltransaksi) + Integer.parseInt(totalAmount);
-                                    htngtotalunit = Integer.parseInt(totalunit) + Integer.parseInt(totalQuantity);
+                            if (snapshot.exists()) {
 
-                                    String finalhijab = String.valueOf(htnghijab);
-                                    String finalaksesoris = String.valueOf(htngaksesoris);
-                                    String finalalatsolat = String.valueOf(htngalatshlt);
-                                    String finalpakaian = String.valueOf(htngpakaian);
-                                    String finaltotal = String.valueOf(htngtotal);
-                                    String finaltotalunit = String.valueOf(htngtotalunit);
 
-                                    //masuk ke database
+                                ambildatacart();
+                                Handler handler = new Handler();
+                                Runnable runnable = new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        int htnghijab, htngaksesoris, htngalatshlt, htngpakaian, htngtotal, htngtotalunit = 0;
+                                        String hijab1 = snapshot.child("hijab").getValue(String.class);
+                                        String aksesoris1 = snapshot.child("aksesoris").getValue(String.class);
+                                        String alatshalat1 = snapshot.child("alatshalat").getValue(String.class);
+                                        String pakaian1 = snapshot.child("pakaian").getValue(String.class);
+                                        String totaltransaksi = snapshot.child("totaltransaksi").getValue(String.class);
+                                        String totalunit = snapshot.child("totalunit").getValue(String.class);
+                                        //hitung
+                                        htnghijab = Integer.parseInt(hijab1) + Integer.parseInt(hijabcart);
+                                        htngaksesoris = Integer.parseInt(aksesoris1) + Integer.parseInt(aksesoriscart);
+                                        htngalatshlt = Integer.parseInt(alatshalat1) + Integer.parseInt(alsolatcart);
+                                        htngpakaian = Integer.parseInt(pakaian1) + Integer.parseInt(pakaiancart);
+                                        htngtotal = Integer.parseInt(totaltransaksi) + Integer.parseInt(totalAmount);
+                                        htngtotalunit = Integer.parseInt(totalunit) + Integer.parseInt(totalQuantity);
+
+                                        String finalhijab = String.valueOf(htnghijab);
+                                        String finalaksesoris = String.valueOf(htngaksesoris);
+                                        String finalalatsolat = String.valueOf(htngalatshlt);
+                                        String finalpakaian = String.valueOf(htngpakaian);
+                                        String finaltotal = String.valueOf(htngtotal);
+                                        String finaltotalunit = String.valueOf(htngtotalunit);
+
+                                        //masuk ke database
 //                                    final HashMap<String, Object> cartMap = new HashMap<>();
 //                                    cartMap.put("aksesoris", String.valueOf(htnghijab));
 //                                    cartMap.put("alatshalat", String.valueOf(htngaksesoris));
@@ -145,43 +159,32 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
 //                                    cartMap.put("tanggal", tanggal);
 //                                    cartMap.put("totaltransaksi", String.valueOf(htngtotal));
 //                                    cartMap.put("totalunit", String.valueOf(htngtotalunit));
-                                    referencenew = FirebaseDatabase.getInstance().getReference().child("Pembukuan");
-                                    pembukuan_data_item data_item1 = new pembukuan_data_item(tanggal,finaltotal,finaltotalunit,finalpakaian,finalalatsolat,finalhijab,finalaksesoris);
-                                    referencenew.child(bulan2).child(hari).setValue(data_item1).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            if (task.isSuccessful()){
+                                        referencenew = FirebaseDatabase.getInstance().getReference().child("Pembukuan");
+                                        pembukuan_data_item data_item1 = new pembukuan_data_item(tanggal, finaltotal, finaltotalunit, finalpakaian, finalalatsolat, finalhijab, finalaksesoris);
+                                        referencenew.child(bulan2).child(hari).setValue(data_item1).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful()) {
 
-                                                ProductsRef2.removeValue();
-                                                Toast.makeText(ConfirmFinalOrderActivity.this, "Selesai..!", Toast.LENGTH_SHORT).show();
-                                                finish();
-                                                Intent intent = new Intent(ConfirmFinalOrderActivity.this, HomeActivity.class);
-                                                startActivity(intent);
+                                                    ProductsRef2.removeValue();
+                                                    Toast.makeText(ConfirmFinalOrderActivity.this, "Selesai..!", Toast.LENGTH_SHORT).show();
+                                                    finish();
+                                                    Intent intent = new Intent(ConfirmFinalOrderActivity.this, HomeActivity.class);
+                                                    startActivity(intent);
+
+                                                }
 
                                             }
-
-                                        }
-                                    });
-//                                    ProductsRef.child(bulan2).child(tanggal).updateChildren(cartMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-//                                        @Override
-//                                        public void onComplete(@NonNull Task<Void> task) {
-//                                            if (task.isSuccessful()) {
-//                                                Intent intent = new Intent(ConfirmFinalOrderActivity.this, HomeActivity.class);
-//                                                startActivity(intent);
-//                                                ProductsRef2.removeValue();
-//                                                Toast.makeText(ConfirmFinalOrderActivity.this, "Update Data", Toast.LENGTH_SHORT).show();
-//                                            }else{
-//                                                Toast.makeText(ConfirmFinalOrderActivity.this, "ERror", Toast.LENGTH_SHORT).show();
-//                                            }
-//                                        }
-//                                    });
+                                        });
 
 
-                                }
-                            };
-                            handler.postDelayed(runnable, 1000);
+                                    }
+                                };
+                                handler.postDelayed(runnable, 1000);
 
-
+                            }else{
+                                tambahdata();
+                            }
 
 
                         }

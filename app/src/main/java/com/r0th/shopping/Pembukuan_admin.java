@@ -105,11 +105,11 @@ Button datepicker,tombolcob;
                         int a = Integer.parseInt(pembukuan_data_item.getTotaltransaksi());
                         DecimalFormat decim = new DecimalFormat("#,###.##");
                         pembukuanViewHolder.tanggal.setText(pembukuan_data_item.getTanggal());
-                        pembukuanViewHolder.hijab.setText("Hijab : "+pembukuan_data_item.getHijab());
-                        pembukuanViewHolder.aksesoris.setText("Aksesoris : "+pembukuan_data_item.getAksesoris());
-                        pembukuanViewHolder.pakaian.setText("Pakaian : "+pembukuan_data_item.getPakaian());
-                        pembukuanViewHolder.alsolat.setText("Alat Shalat : "+pembukuan_data_item.getAlatshalat());
-                        pembukuanViewHolder.totaltrx.setText("Rp. "+decim.format(a));
+                        pembukuanViewHolder.hijab.    setText("Hijab⠀⠀⠀⠀⠀⠀⠀: "+pembukuan_data_item.getHijab());
+                        pembukuanViewHolder.aksesoris.setText("Aksesoris⠀⠀⠀⠀: "+pembukuan_data_item.getAksesoris());
+                        pembukuanViewHolder.pakaian.  setText("Pakaian⠀⠀⠀⠀   : "+pembukuan_data_item.getPakaian());
+                        pembukuanViewHolder.alsolat.  setText("Alat Shalat⠀⠀ ⠀: "+pembukuan_data_item.getAlatshalat());
+                        pembukuanViewHolder.totaltrx. setText("Rp. "+decim.format(a));
                         pembukuanViewHolder.totalunit.setText(pembukuan_data_item.getTotalunit());
 
 

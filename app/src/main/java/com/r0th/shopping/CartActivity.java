@@ -1,14 +1,30 @@
 package com.r0th.shopping;
 
+import android.Manifest;
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.graphics.pdf.PdfDocument;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
+import android.os.Environment;
+import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,9 +32,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.gkemon.XMLtoPDF.PdfGenerator;
+import com.gkemon.XMLtoPDF.PdfGeneratorListener;
+import com.gkemon.XMLtoPDF.model.FailureResponse;
+import com.gkemon.XMLtoPDF.model.SuccessResponse;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.core.Context;
@@ -35,6 +56,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.DecimalFormat;
 
 public class CartActivity extends AppCompatActivity{
@@ -45,7 +69,19 @@ public class CartActivity extends AppCompatActivity{
     TextView totalhargadisplay;
     private int overTotalPrice=0;
     private int overTotalQuantity=0;
+    private View finalInvoiceViewToPrint;
     String testtt ="";
+    String TAG="";
+    RelativeLayout relativeLayout;
+    Display mDisplay;
+    String imagesUri;
+    String path;
+    Bitmap bitmap;
+    String file_name = "Screenshot";
+    File myPath;
+    int totalHeight;
+    int totalWidth;
+    public static final int READ_PHONE = 110;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,10 +94,16 @@ public class CartActivity extends AppCompatActivity{
         txtTotalAmount = (TextView)findViewById(R.id.total_price);
         txtMsg1 = (TextView)findViewById(R.id.msg1);
         txtchkt = findViewById(R.id.textcheckout);
+        WindowManager wm = (WindowManager) getSystemService(this.WINDOW_SERVICE);
+        mDisplay = wm.getDefaultDisplay();
         totalhargadisplay=findViewById(R.id.cartproducttotalprice);
+        relativeLayout = findViewById(R.id.relparent);
+
+
         NextProcessBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //takeScreenShot();
                 //txtTotalAmount.setText("Total Price = IDR."+String.valueOf(overTotalPrice));
                 Intent intent = new Intent(CartActivity.this,ConfirmFinalOrderActivity.class);
                 intent.putExtra("Total Price", String.valueOf(overTotalPrice));
@@ -73,13 +115,109 @@ public class CartActivity extends AppCompatActivity{
         });
 
     }
+    public Bitmap getBitmapFromView(View view, int totalHeight, int totalWidth){
+
+        Bitmap returnedBitmap = Bitmap.createBitmap(totalWidth, totalHeight, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(returnedBitmap);
+        Drawable bgDrawable = view.getBackground();
+
+        if(bgDrawable != null){
+            bgDrawable.draw(canvas);
+        }else{
+            canvas.drawColor(Color.WHITE);
+        }
+
+        view.draw(canvas);
+        return returnedBitmap;
+    }
+    private void takeScreenShot(){
+
+        File folder = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/ScreenShot/");
+
+        if(!folder.exists()){
+            boolean success = folder.mkdir();
+        }
+
+        path = folder.getAbsolutePath();
+        path = path + "/" + file_name + System.currentTimeMillis() + ".pdf";
+
+        View u = findViewById(R.id.relparent);
+
+        RelativeLayout z = findViewById(R.id.relparent);
+        totalHeight = 2300;
+        totalWidth = 1080;
+        String extr = Environment.getExternalStorageDirectory() + "/Pictures/";
+        File file = new File(extr);
+        if(!file.exists())
+            file.mkdir();
+        String fileName = file_name + ".jpg";
+        myPath = new File(extr, fileName);
+        imagesUri = myPath.getPath();
+        bitmap = getBitmapFromView(u, totalHeight, totalWidth);
+
+        try{
+            FileOutputStream fos = new FileOutputStream(myPath);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
+            fos.flush();
+            fos.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    createPdf();
 
 
+    }
+    private void createPdf() {
+
+        PdfDocument document = new PdfDocument();
+        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(bitmap.getWidth(), bitmap.getHeight(), 1).create();
+        PdfDocument.Page page = document.startPage(pageInfo);
+
+        Canvas canvas = page.getCanvas();
+
+        Paint paint = new Paint();
+        paint.setColor(Color.parseColor("#ffffff"));
+        canvas.drawPaint(paint);
+
+        Bitmap bitmap = Bitmap.createScaledBitmap(this.bitmap, this.bitmap.getWidth(), this.bitmap.getHeight(), true);
+
+        paint.setColor(Color.BLUE);
+        canvas.drawBitmap(bitmap, 0, 0, null);
+        document.finishPage(page);
+        File filePath = new File(path);
+        try{
+            document.writeTo(new FileOutputStream(filePath));
+        }catch (IOException e){
+            e.printStackTrace();
+            Toast.makeText(this, "Something Wrong: "+e.toString(), Toast.LENGTH_SHORT).show();
+        }
+
+        document.close();
+
+        if (myPath.exists())
+            myPath.delete();
+
+        openPdf(path);
+
+    }
+
+    private void openPdf(String path) {
+        File file = new File(path);
+        Intent target = new Intent(Intent.ACTION_VIEW);
+        target.setDataAndType(Uri.fromFile(file), "image/*");
+        target.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+
+        Intent intent = Intent.createChooser(target, "Open FIle");
+        try{
+            startActivity(intent);
+        }catch (ActivityNotFoundException e){
+            Toast.makeText(this, "No Apps to read PDF FIle", Toast.LENGTH_SHORT).show();
+        }
+    }
     @Override
     protected void onStart() {
         super.onStart();
-        Bayar =findViewById(R.id.next_btn);
-        CheckOrderState();
+
         final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("Cart List");
         FirebaseRecyclerOptions<Cart> options =
                 new FirebaseRecyclerOptions.Builder<Cart>()
@@ -103,26 +241,6 @@ public class CartActivity extends AppCompatActivity{
                 overTotalPrice = overTotalPrice + oneTyprProductTPrice;
                 //totalhargadisplay.setText(oneTyprProductTPrice+"IDR.");
 
-                DatabaseReference check = FirebaseDatabase.getInstance().getReference("Cart List").
-                        child("User view").
-                        child("Products").
-                        child(model.getPid()).
-                        child("quantity");
-                check.addListenerForSingleValueEvent(new ValueEventListener() {
-
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        String e = snapshot.getValue(String.class);
-
-                        testtt = e;
-                        //Toast.makeText(CartActivity.this, "Test "+e, Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -191,10 +309,10 @@ public class CartActivity extends AppCompatActivity{
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
                     //Toast.makeText(CartActivity.this,"1",Toast.LENGTH_SHORT).show();
-                    Bayar.setVisibility(View.VISIBLE);
+                    NextProcessBtn.setVisibility(View.VISIBLE);
                     txtchkt.setVisibility(View.VISIBLE);
                 }else {
-                    Bayar.setVisibility(View.GONE);
+                    NextProcessBtn.setVisibility(View.GONE);
                     txtchkt.setVisibility(View.GONE);
                 }//Toast.makeText(CartActivity.this,"2",Toast.LENGTH_SHORT).show();
             }
