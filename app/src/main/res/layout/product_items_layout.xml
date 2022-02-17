@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/_110sdp"
+    android:layout_height="@dimen/_90sdp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/transparent">
     <RelativeLayout
         android:layout_marginRight="@dimen/_5sdp"
         android:layout_marginLeft="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_10sdp"
+        
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_100sdp">
+        android:layout_height="@dimen/_90sdp">
+
         <soup.neumorphism.NeumorphCardView
 
             android:id="@+id/carview3"
@@ -17,40 +18,41 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_130sdp"
             android:padding="12dp"
-            app:neumorph_lightSource="leftTop"
             app:neumorph_backgroundColor="@color/LightNeoBG"
+            app:neumorph_inset="12dp"
+            app:neumorph_insetBottom="12dp"
+            app:neumorph_insetEnd="12dp"
+            app:neumorph_insetStart="12dp"
+            app:neumorph_insetTop="12dp"
+            app:neumorph_lightSource="leftTop"
             app:neumorph_shadowColorDark="@color/LightneoShadow"
             app:neumorph_shadowColorLight="@color/LIghtNeoLightShadow"
             app:neumorph_shadowElevation="3dp"
             app:neumorph_shapeAppearance="@style/CustomShapeAppearance"
             app:neumorph_shapeType="pressed"
-            app:neumorph_inset="12dp"
-            app:neumorph_insetStart="12dp"
-            app:neumorph_insetEnd="12dp"
-            app:neumorph_insetTop="12dp"
-            app:neumorph_insetBottom="12dp"
-            app:neumorph_strokeWidth="1dp"/>
+            app:neumorph_strokeWidth="1dp" />
+
         <com.google.android.material.imageview.ShapeableImageView
-            android:layout_marginTop="@dimen/_3sdp"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_marginBottom="@dimen/_4sdp"
             android:id="@+id/product_image"
-            android:layout_centerVertical="true"
             android:layout_width="@dimen/_50sdp"
-            android:layout_height="@dimen/_70sdp"
+            android:layout_height="@dimen/_60sdp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:layout_marginBottom="@dimen/_4sdp"
             app:shapeAppearance="@android:color/transparent"
-            app:shapeAppearanceOverlay="@style/roundedCornersImageView"/>
+            app:shapeAppearanceOverlay="@style/roundedCornersImageView" />
 
         <TextView
-            android:fontFamily="@font/poesten"
             android:id="@+id/product_name"
             android:layout_width="@dimen/_200sdp"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/product_image"
-            android:text="NAMA PRODUK"
             android:layout_marginLeft="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_10sdp"
-            android:textSize="@dimen/_15ssp"/>
+            android:layout_toEndOf="@+id/product_image"
+            android:fontFamily="@font/poesten"
+            android:text="NAMA PRODUK"
+            android:textSize="@dimen/_12ssp" />
 
         <TextView
             android:id="@+id/product_description"
@@ -59,23 +61,23 @@
             android:layout_below="@id/product_name"
             android:layout_marginStart="26dp"
             android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_marginTop="11dp"
+            android:layout_marginTop="@dimen/_3sdp"
             android:layout_toEndOf="@id/product_image"
             android:fontFamily="@font/raleway_light"
             android:text="Stok"
-            android:textSize="@dimen/_15ssp" />
+            android:textSize="@dimen/_11ssp" />
 
         <TextView
-            android:fontFamily="@font/nunito_sans_italic"
+            android:id="@+id/product_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/product_price"
             android:layout_below="@id/product_description"
-            android:text="Harga"
-            android:layout_toEndOf="@id/product_image"
             android:layout_marginLeft="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_1sdp"
-            android:textSize="@dimen/_15ssp"/>
+            android:layout_toEndOf="@id/product_image"
+            android:fontFamily="@font/nunito_sans_italic"
+            android:text="Harga"
+            android:textSize="@dimen/_12ssp" />
 
 
 

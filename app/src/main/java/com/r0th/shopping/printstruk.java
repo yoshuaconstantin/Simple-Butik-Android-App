@@ -1,9 +1,11 @@
 package com.r0th.shopping;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,10 +15,12 @@ import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowMetrics;
 import android.webkit.MimeTypeMap;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,8 +37,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.r0th.shopping.Model.Cart;
+import com.r0th.shopping.Model.Products;
 import com.r0th.shopping.Prevalent.CartViewHolder;
 import com.r0th.shopping.Prevalent.StrukViewHolder;
+import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
@@ -59,9 +65,9 @@ public class printstruk extends AppCompatActivity {
     Bitmap bitmap;
     String file_name = "Screenshot";
     File myPath;
-    int totalHeight;
+    int totalHeight=0;
     ImageView print;
-    int totalWidth;
+    int totalWidth=0;
     String totamount,totalquantity,saveCurrentDate, saveCurrentTime;
     String time = "";
     @Override
@@ -98,6 +104,10 @@ public class printstruk extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+        int width= this.getResources().getDisplayMetrics().widthPixels;
+        int height= this.getResources().getDisplayMetrics().heightPixels;
+        totalWidth = width;
+        totalHeight = height;
     }
 
     @Override
@@ -163,8 +173,8 @@ public class printstruk extends AppCompatActivity {
         View u = findViewById(R.id.relparentstruk);
 
         RelativeLayout z = findViewById(R.id.relparentstruk);
-        totalHeight = 2300;
-        totalWidth = 1080;
+        totalHeight = totalHeight;
+        totalWidth = totalWidth;
         String extr = Environment.getExternalStorageDirectory() + "/Pictures/";
         File file = new File(extr);
         if(!file.exists())

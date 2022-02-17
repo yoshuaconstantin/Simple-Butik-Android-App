@@ -81,6 +81,7 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
                 intent.putExtra("Total Price", String.valueOf(totalAmount));
                 intent.putExtra("Total Quantity", String.valueOf(totalQuantity));
                 startActivity(intent);
+
             }
         });
 
@@ -99,10 +100,64 @@ public class ConfirmFinalOrderActivity extends AppCompatActivity {
         });
     }
 
+    private void testpengurangan(){
 
+        DatabaseReference productsRef = FirebaseDatabase.getInstance().getReference("Cart List");
+        DatabaseReference productsRef2= FirebaseDatabase.getInstance().getReference("Products");
+        productsRef.child("User view").child("Products").orderByChild("pname").addListenerForSingleValueEvent(new ValueEventListener() {
+            String nm="";
+            String qty ="";
+            String nm2="";
+            String qty2="";
+            String stockupdate="";
+            String PID="";
+            int hasil=0;
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    qty = dataSnapshot.child("quantity").getValue().toString();
+                    nm = dataSnapshot.child("pname").getValue().toString();
+                    productsRef2.orderByChild("pname").equalTo(nm).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if (snapshot.exists()){
+                                for (DataSnapshot dataSnapshot1 : snapshot.getChildren()){
+                                    qty2 = dataSnapshot1.child("stock").getValue().toString();
+                                    hasil = Integer.parseInt(qty2) - Integer.parseInt(qty);
+                                    PID=dataSnapshot1.child("pid").getValue().toString();
+                                    stockupdate = String.valueOf(hasil);
+                                    DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Products").child(PID);
+                                    ref.child("stock").setValue(stockupdate);
+                                }
+
+                            }else{
+                                Toast.makeText(ConfirmFinalOrderActivity.this, "not exist", Toast.LENGTH_SHORT).show();
+                            }
+
+
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
 
 
     private void checkdatabutu(){
+        testpengurangan();
         ProductsRef = FirebaseDatabase.getInstance().getReference().child("Pembukuan");
         ProductsRef2 = FirebaseDatabase.getInstance().getReference().child("Cart List");
         ProductsRef.addListenerForSingleValueEvent(new ValueEventListener() {
