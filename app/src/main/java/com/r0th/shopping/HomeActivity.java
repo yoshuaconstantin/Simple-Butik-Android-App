@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,6 +29,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.r0th.shopping.returbarang.PilihanReturState;
 import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
@@ -68,12 +70,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         View headerView = navigationView.getHeaderView(0);
         TextView userNameTextView = headerView.findViewById(R.id.user_profile_name);
         CircleImageView profileImageView = headerView.findViewById(R.id.user_profile_image);
-        userNameTextView.setText(Prevalent.currentOnlineUser.getName());
-        Picasso.get().load(Prevalent.currentOnlineUser.getImage()).placeholder(R.drawable.profile).into(profileImageView);
+        userNameTextView.setText("Kasir");
+        //Picasso.get().load(Prevalent.currentOnlineUser.getImage()).placeholder(R.drawable.profile).into(profileImageView);
         recyclerView = findViewById(R.id.recycler_menu);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setLayoutManager(gridLayoutManager);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -129,18 +132,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
     @Override
     public void onBackPressed(){
-        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
-            drawerLayout.closeDrawer(GravityCompat.START);
-        }
-        else
-        {super.onBackPressed();
-        }
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main_menu, menu);
+
         return true;
     }
 
@@ -170,21 +168,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         if (id == R.id.nav_cart) {
             Intent intent = new Intent(HomeActivity.this,CartActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_search) {
-            Intent intent = new Intent(HomeActivity.this,SearchProductsActivity.class);
-            startActivity(intent);
-
-        } else if (id == R.id.nav_categories) {
-            Intent intent = new Intent(HomeActivity.this,category.class);
-            startActivity(intent);
-
-        } else if (id == R.id.nav_settings) {
-            Intent intent=new Intent(HomeActivity.this,SettinsActivity.class);
+        }  else if (id == R.id.nav_retur) {
+            Intent intent=new Intent(HomeActivity.this, StrukOnlyPrint.class);
             startActivity(intent);
 
         } else if (id == R.id.nav_logout) {
-            Paper.book().destroy();
-            Intent intent=new Intent(HomeActivity.this,MainActivity.class);
+            //Paper.book().destroy();
+            Intent intent=new Intent(HomeActivity.this,newlogin.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK |Intent.FLAG_ACTIVITY_CLEAR_TASK );
             startActivity(intent);
             finish();

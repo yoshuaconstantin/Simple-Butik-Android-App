@@ -7,13 +7,98 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".HomeActivity"
     tools:showIn="@layout/toolbar">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_60sdp"
+        android:id="@+id/rel0"
+        android:background="@drawable/bluesquarecorner">
+        <soup.neumorphism.NeumorphCardView
+
+            android:id="@+id/neu1"
+            style="@style/Widget.Neumorph.CardView"
+            android:layout_width="@dimen/_170sdp"
+            android:layout_height="match_parent"
+            android:padding="12dp"
+            app:neumorph_lightSource="leftTop"
+            app:neumorph_backgroundColor="@color/LightNeoBG"
+            app:neumorph_shadowColorDark="@color/LightneoShadow"
+            app:neumorph_shadowColorLight="@color/LIghtNeoLightShadow"
+            app:neumorph_shadowElevation="3dp"
+            app:neumorph_shapeAppearance="@style/CustomShapeAppearance"
+            app:neumorph_shapeType="pressed"
+            app:neumorph_inset="12dp"
+            app:neumorph_insetStart="12dp"
+            app:neumorph_insetEnd="12dp"
+            app:neumorph_insetTop="12dp"
+            app:neumorph_insetBottom="12dp"
+            app:neumorph_strokeWidth="1dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/search_product_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:background="@android:color/transparent"
+                    android:hint="Masukan Barcode"
+                    android:inputType="number"
+                    android:padding="9dp"
+                    android:textColorHint="@color/notallblack"
+                    android:textSize="@dimen/_15ssp"
+                    android:textStyle="bold" />
+
+
+            </RelativeLayout>
+
+        </soup.neumorphism.NeumorphCardView>
+
+        <soup.neumorphism.NeumorphButton
+            android:id="@+id/search_btn"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_toRightOf="@+id/neu1"
+            android:background="@color/colorPrimaryDark"
+            android:textAlignment="textEnd"
+            android:textColor="@color/notallblack"
+            android:textSize="25dp"
+            android:visibility="visible"
+            app:neumorph_backgroundColor="@color/LightNeoBG"
+            app:neumorph_lightSource="leftTop"
+            app:neumorph_shadowColorDark="@color/LightneoShadow"
+            app:neumorph_shadowColorLight="@color/LIghtNeoLightShadow" />
+        <TextView
+            android:layout_marginLeft="@dimen/_35sdp"
+            android:textColor="@color/notallblack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cari"
+            android:fontFamily="@font/poesten"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/_26sdp"
+            android:textAlignment="center"
+            android:textSize="@dimen/_15ssp"
+            android:layout_toRightOf="@+id/neu1"/>
+
+
+
+    </RelativeLayout>
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_below="@id/rel0"
         android:id="@+id/recycler_menu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="vertical"
-        >
-    </androidx.recyclerview.widget.RecyclerView>
-
+        android:scrollbars="vertical"></androidx.recyclerview.widget.RecyclerView>
+    </RelativeLayout>
 </RelativeLayout>

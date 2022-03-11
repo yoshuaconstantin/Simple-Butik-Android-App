@@ -13,6 +13,7 @@ import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -40,7 +41,8 @@ public class SearchProductsActivity extends AppCompatActivity {
         inputText = findViewById(R.id.search_product_name);
         searchBtn = findViewById(R.id.search_btn);
         searchList = findViewById(R.id.search_list);
-        searchList.setLayoutManager(new LinearLayoutManager(SearchProductsActivity.this));
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2);
+        searchList.setLayoutManager(new GridLayoutManager(SearchProductsActivity.this,2));
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

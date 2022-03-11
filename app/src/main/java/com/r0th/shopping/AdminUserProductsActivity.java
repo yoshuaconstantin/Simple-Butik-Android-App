@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -33,8 +34,9 @@ public class AdminUserProductsActivity extends AppCompatActivity {
         userID = getIntent().getStringExtra("uid");
         productsList = findViewById(R.id.products_list);
         productsList.setHasFixedSize(true);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2);
         layoutManager = new LinearLayoutManager(this);
-        productsList.setLayoutManager(layoutManager);
+        productsList.setLayoutManager(gridLayoutManager);
         cartListRef = FirebaseDatabase.getInstance().getReference().child("Cart List").child("Admin view").child(userID).child("Products");
 
     }

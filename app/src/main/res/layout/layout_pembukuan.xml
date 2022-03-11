@@ -2,33 +2,98 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <RelativeLayout
+        android:id="@+id/rel11"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_100sdp"
-        android:id="@+id/rel11">
+        android:layout_height="@dimen/_125sdp">
+
         <TextView
             android:id="@+id/display1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:fontFamily="@font/poesten"
             android:text="Data Pembukuan Bulanan"
             android:textColor="@color/notallblack"
-            android:fontFamily="@font/poesten"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:textSize="@dimen/_20ssp"/>
+            android:textSize="@dimen/_15ssp" />
+
         <Button
-            android:layout_centerHorizontal="true"
             android:id="@+id/datePickerButton"
-            android:layout_width="@dimen/_150sdp"
-            android:layout_height="wrap_content"
-            android:text="Pilih Bulan"
-            android:fontFamily="@font/raleway_light"
-            android:textSize="30sp"
-            android:textColor="@color/notallblack"
             style="?android:spinnerStyle"
-            android:layout_marginTop="10dp"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_below="@+id/display1"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:fontFamily="@font/raleway_light"
             android:onClick="openDatePicker"
-            android:layout_below="@+id/display1"/>
+            android:text="Pilih Bulan"
+            android:textColor="@color/notallblack"
+            android:textSize="@dimen/_15ssp" />
+
+        <RelativeLayout
+            android:layout_width="@dimen/_180sdp"
+            android:layout_height="match_parent"
+            android:layout_below="@id/display1"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/bluesquarecorner">
+
+            <TextView
+                android:id="@+id/nmbulan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:fontFamily="@font/poesten"
+                android:text="Bulan :"
+                android:textColor="@color/notallblack"
+                android:textSize="@dimen/_12ssp" />
+
+            <TextView
+                android:id="@+id/totaltrx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/nmbulan"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:fontFamily="@font/poesten"
+                android:text="Total Transaksi :"
+                android:textColor="@color/notallblack"
+                android:textSize="@dimen/_11ssp" />
+
+
+            <TextView
+                android:id="@+id/totalkeuntungan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/totaltrx"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:fontFamily="@font/poesten"
+                android:text="total Keuntungan :"
+                android:textColor="@color/notallblack"
+                android:textSize="@dimen/_11ssp" />
+
+            <TextView
+                android:id="@+id/totalunit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/totalkeuntungan"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:fontFamily="@font/poesten"
+                android:text="total unit terjual :"
+                android:textColor="@color/notallblack"
+                android:textSize="@dimen/_11ssp" />
+
+        </RelativeLayout>
 
 
     </RelativeLayout>
@@ -36,10 +101,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/rel11">
+
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recdatapem"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/recdatapem"/>
+            android:layout_height="match_parent" />
 
     </RelativeLayout>
 

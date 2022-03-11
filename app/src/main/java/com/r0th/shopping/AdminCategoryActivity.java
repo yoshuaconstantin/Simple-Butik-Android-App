@@ -35,7 +35,7 @@ public class AdminCategoryActivity extends AppCompatActivity {
         LogoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(AdminCategoryActivity.this,MainActivity.class);
+                Intent intent= new Intent(AdminCategoryActivity.this,newlogin.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 finish();
@@ -100,6 +100,11 @@ public class AdminCategoryActivity extends AppCompatActivity {
         });
 
 
+
+    }
+
+    @Override
+    public void onBackPressed() {
 
     }
 }

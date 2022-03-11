@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bgwlp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="2"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <RelativeLayout
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="@dimen/_150sdp"
+                    android:layout_height="@dimen/_150sdp"
+                    android:background="@drawable/bluesquarecorner">
+
+                    <TextView
+                        android:id="@+id/textadmin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_centerHorizontal="true"
+                        android:fontFamily="@font/poesten"
+                        android:text="ADMIN LOGIN"
+                        android:textColor="@color/notallblack"
+                        android:textSize="@dimen/_17ssp" />
+
+                    <EditText
+                        android:textSize="@dimen/_15ssp"
+                        android:textAlignment="center"
+                        android:id="@+id/edtpassadmin"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:background="@drawable/bluesquarecorner"
+                        android:inputType="numberPassword"
+                        android:textColor="@color/notallblack" />
+
+
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/imgadm"
+                    android:layout_width="@dimen/_150sdp"
+                    android:layout_height="@dimen/_150sdp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:src="@drawable/adminnew"
+                    android:visibility="visible" />
+
+
+            </RelativeLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <RelativeLayout
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="@dimen/_150sdp"
+                    android:layout_height="@dimen/_145sdp"
+                    android:background="@drawable/bluesquarecorner">
+
+                    <TextView
+                        android:id="@+id/txtuser"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_centerHorizontal="true"
+                        android:fontFamily="@font/poesten"
+                        android:text="USER LOGIN"
+                        android:textColor="@color/notallblack"
+                        android:textSize="@dimen/_17ssp" />
+
+                    <EditText
+                        android:textSize="@dimen/_15ssp"
+                        android:textAlignment="center"
+                        android:id="@+id/edtpassuser"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:background="@drawable/bluesquarecorner"
+                        android:inputType="numberPassword"
+                        android:textColor="@color/notallblack" />
+
+
+                </RelativeLayout>
+
+                <ImageView
+
+                    android:id="@+id/imgusr"
+                    android:layout_width="@dimen/_150sdp"
+                    android:layout_height="@dimen/_150sdp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:src="@drawable/userpng"
+                    android:visibility="visible" />
+            </RelativeLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

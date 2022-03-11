@@ -7,21 +7,12 @@
             android:icon="@drawable/nav_cart"
             android:title="Cart"
             android:iconTint="@android:color/white"/>
+
+
         <item
-            android:id="@+id/nav_search"
-            android:icon="@drawable/ic_search"
-            android:title="Search"
-            android:iconTint="@android:color/white"
-            />
-        <item
-            android:id="@+id/nav_categories"
-            android:icon="@drawable/category"
-            android:title="Categories"
-            android:iconTint="@android:color/white"/>
-        <item
-            android:id="@+id/nav_settings"
+            android:id="@+id/nav_retur"
             android:icon="@drawable/ic_person_add"
-            android:title="Settings"
+            android:title="Retur"
             android:iconTint="@android:color/white"/>
         <item
             android:id="@+id/nav_logout"

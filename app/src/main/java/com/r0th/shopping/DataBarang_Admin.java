@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -57,8 +58,9 @@ public class DataBarang_Admin extends AppCompatActivity {
         setContentView(R.layout.layout_kategori_lengkap);
         recyclerView = findViewById(R.id.relkategoriadm);
         recyclerView.setHasFixedSize(true);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setLayoutManager(gridLayoutManager);
         database = FirebaseDatabase.getInstance();
         reference = database.getReference("Products");
         RefCart = database.getReference("Cart List");
@@ -127,6 +129,7 @@ public class DataBarang_Admin extends AppCompatActivity {
                 dataBarang_adminViewHolder.rvstockbrng.setText("Stock : "+products.getStock());
                 dataBarang_adminViewHolder.rvhargabrng.setText("Rp."+decim.format(y));
                 Picasso.get().load(products.getImage()).into(dataBarang_adminViewHolder.imageView);
+
             }
 
 
@@ -172,6 +175,10 @@ public class DataBarang_Admin extends AppCompatActivity {
             protected void onBindViewHolder(@NonNull DataBarang_adminViewHolder dataBarang_adminViewHolder, int i, @NonNull Products products) {
                 DecimalFormat decim = new DecimalFormat("#,###.##");
                 int y = Integer.parseInt(products.getPrice());
+//                int g = Integer.parseInt(products.getDiscount());
+//                double h = g * 0.01;
+//                double x = y*h;
+//                int z = (int) (y - Double.valueOf(x));
                 dataBarang_adminViewHolder.rvnmbarang.setText(products.getPname());
                 dataBarang_adminViewHolder.rvstockbrng.setText("Stock : "+products.getStock());
                 dataBarang_adminViewHolder.rvhargabrng.setText("Rp."+decim.format(y));
@@ -205,6 +212,10 @@ public class DataBarang_Admin extends AppCompatActivity {
             protected void onBindViewHolder(@NonNull DataBarang_adminViewHolder dataBarang_adminViewHolder, int i, @NonNull Products products) {
                 DecimalFormat decim = new DecimalFormat("#,###.##");
                 int y = Integer.parseInt(products.getPrice());
+//                int g = Integer.parseInt(products.getDiscount());
+//                double h = g * 0.01;
+//                double x = y*h;
+//                int z = (int) (y - Double.valueOf(x));
                 dataBarang_adminViewHolder.rvnmbarang.setText(products.getPname());
                 dataBarang_adminViewHolder.rvstockbrng.setText("Stock : "+products.getStock());
                 dataBarang_adminViewHolder.rvhargabrng.setText("Rp."+decim.format(y));
@@ -259,12 +270,13 @@ public class DataBarang_Admin extends AppCompatActivity {
         final EditText namabarang = updateLayout.findViewById(R.id.editnamaproduk);
         final EditText editstock = updateLayout.findViewById(R.id.editprodukstok);
         final EditText editharga = updateLayout.findViewById(R.id.editprodukharga);
+        //final EditText editdiskon = updateLayout.findViewById(R.id.editdiscount);
 
 
         namabarang.setText(item.getPname());
         editstock.setText(item.getStock());
         editharga.setText(item.getPrice());
-
+        //editdiskon.setText(item.getDiscount());
 
 
         String pid = item.getPid();
@@ -273,6 +285,9 @@ public class DataBarang_Admin extends AppCompatActivity {
         String kategori = item.getCategory();
         String date = item.getDate();
         String time  = item.getTime();
+        String disc = item.getDiscount();
+        String barc = item.getBarcode();
+        String ogprice = item.getOgprice();
 
         builder.setView(updateLayout);
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -281,9 +296,10 @@ public class DataBarang_Admin extends AppCompatActivity {
                 String nm = namabarang.getText().toString();
                 String stck = editstock.getText().toString();
                 String hrg = editharga.getText().toString();
+                String dsc = "0";
 
 
-                Products daitem3 = new Products(nm,desc,hrg,image,kategori,pid,date,time,stck);
+                Products daitem3 = new Products(nm,desc,hrg,image,kategori,pid,date,time,stck,barc,dsc,ogprice);
                 reference.child(key).setValue(daitem3);
             }
         });
@@ -306,6 +322,10 @@ public class DataBarang_Admin extends AppCompatActivity {
             protected void onBindViewHolder(@NonNull DataBarang_adminViewHolder dataBarang_adminViewHolder, int i, @NonNull Products products) {
                 DecimalFormat decim = new DecimalFormat("#,###.##");
                 int y = Integer.parseInt(products.getPrice());
+//                int g = Integer.parseInt(products.getDiscount());
+//                double h = g * 0.01;
+//                double x = y*h;
+//                int z = (int) (y - Double.valueOf(x));
                 dataBarang_adminViewHolder.rvnmbarang.setText(products.getPname());
                 dataBarang_adminViewHolder.rvstockbrng.setText("Stock : "+products.getStock());
                 dataBarang_adminViewHolder.rvhargabrng.setText("Rp."+decim.format(y));

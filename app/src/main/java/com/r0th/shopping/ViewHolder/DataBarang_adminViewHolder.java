@@ -12,7 +12,7 @@ import com.r0th.shopping.R;
 
 public class DataBarang_adminViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener{
 
-    public TextView rvnmbarang,rvstockbrng,rvhargabrng;
+    public TextView rvnmbarang,rvstockbrng,rvhargabrng,discount;
     public ImageView imageView;
     public DataBarang_adminViewHolder(@NonNull View itemView) {
         super(itemView);

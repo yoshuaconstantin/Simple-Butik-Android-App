@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_20ssp"
+            android:text="Pengembalian Barang"
+            android:fontFamily="@font/poesten"
+            android:textColor="@color/notallblack"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_50sdp"/>
+        <soup.neumorphism.NeumorphCardView
+            android:layout_centerInParent="true"
+            android:id="@+id/statebarang"
+            style="@style/Widget.Neumorph.CardView"
+            android:layout_width="@dimen/_170sdp"
+            android:layout_height="@dimen/_70sdp"
+            android:padding="12dp"
+            app:neumorph_backgroundColor="@color/LightNeoBG"
+            app:neumorph_inset="12dp"
+            app:neumorph_insetBottom="12dp"
+            app:neumorph_insetEnd="12dp"
+            app:neumorph_insetStart="12dp"
+            app:neumorph_insetTop="12dp"
+            app:neumorph_lightSource="leftTop"
+            app:neumorph_shadowColorDark="@color/LightneoShadow"
+            app:neumorph_shadowColorLight="@color/LIghtNeoLightShadow"
+            app:neumorph_shadowElevation="3dp"
+            app:neumorph_shapeAppearance="@style/CustomShapeAppearance"
+            app:neumorph_shapeType="flat"
+            app:neumorph_strokeWidth="1dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="RETUR DENGAN BARANG"
+            android:fontFamily="@font/poesten"
+            android:textColor="@color/notallblack"
+            android:textSize="@dimen/_12ssp"/>
+        </soup.neumorphism.NeumorphCardView>
+        <soup.neumorphism.NeumorphCardView
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_centerInParent="true"
+            android:id="@+id/stateuang"
+            android:layout_below="@id/statebarang"
+            style="@style/Widget.Neumorph.CardView"
+            android:layout_width="@dimen/_170sdp"
+            android:layout_height="@dimen/_70sdp"
+            android:padding="12dp"
+            app:neumorph_backgroundColor="@color/LightNeoBG"
+            app:neumorph_inset="12dp"
+            app:neumorph_insetBottom="12dp"
+            app:neumorph_insetEnd="12dp"
+            app:neumorph_insetStart="12dp"
+            app:neumorph_insetTop="12dp"
+            app:neumorph_lightSource="leftTop"
+            app:neumorph_shadowColorDark="@color/LightneoShadow"
+            app:neumorph_shadowColorLight="@color/LIghtNeoLightShadow"
+            app:neumorph_shadowElevation="3dp"
+            app:neumorph_shapeAppearance="@style/CustomShapeAppearance"
+            app:neumorph_shapeType="flat"
+            app:neumorph_strokeWidth="1dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="RETUR DENGAN UANG"
+                android:fontFamily="@font/poesten"
+                android:textColor="@color/notallblack"
+                android:textSize="@dimen/_12ssp"/>
+        </soup.neumorphism.NeumorphCardView>
+
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

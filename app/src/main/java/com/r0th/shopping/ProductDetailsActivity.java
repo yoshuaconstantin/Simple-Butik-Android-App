@@ -32,10 +32,11 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private Button addToCartButton;
     private ImageView productImage;
     private ElegantNumberButton numberButton;
-    private TextView productPrice,productDescription,productName;
+    private TextView productPrice,productDescription,productName,producdiscount;
     private String productID="", state = "Normal";
     int stock = 0;
     String kategori = "";
+    String ogprice ="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +49,14 @@ public class ProductDetailsActivity extends AppCompatActivity {
         productName = (TextView) findViewById(R.id.product_name_details);
         productDescription = (TextView) findViewById(R.id.product_description_details);
         productPrice = (TextView) findViewById(R.id.product_price_details);
+        producdiscount = findViewById(R.id.product_discount_details);
         getProductDetails(productID);
         ProductsRef = FirebaseDatabase.getInstance().getReference().child("Products");
         ProductsRef.child(productID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 kategori = (String) snapshot.child("category").getValue();
+                ogprice =(String) snapshot.child("ogprice").getValue();
             }
 
             @Override
@@ -84,12 +87,19 @@ public class ProductDetailsActivity extends AppCompatActivity {
         saveCurrentDate = currentDate.format(calForDate.getTime());
         SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
         saveCurrentTime = currentDate.format(calForDate.getTime());
+        int hitung = Integer.valueOf(ogprice) * Integer.valueOf(numberButton.getNumber());
         final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("Cart List");
         final DatabaseReference minstock = FirebaseDatabase.getInstance().getReference().child("Products").child(productID);
+        int y = Integer.parseInt(productPrice.getText().toString());
+        int g = Integer.parseInt(producdiscount.getText().toString());
+        double h = g * 0.01;
+        double x = y*h;
+        int z = (int) (y - Double.valueOf(x));
         final HashMap<String, Object>cartMap = new HashMap<>();
         cartMap.put("pid",productID);
         cartMap.put("pname",productName.getText().toString());
-        cartMap.put("price",productPrice.getText().toString());
+        cartMap.put("price",String.valueOf(y));
+        cartMap.put("totalogprice",String.valueOf(hitung));
         cartMap.put("date",saveCurrentDate);
         cartMap.put("time",saveCurrentTime);
         cartMap.put("quantity",numberButton.getNumber());
@@ -115,21 +125,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
                             });
                     int quantity = Integer.parseInt(numberButton.getNumber());
 
-                    minstock.child("stock").addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                            String qty = snapshot.getValue(String.class);
-                            stock =  Integer.parseInt(qty)- quantity;
-                            DatabaseReference pengurangan = (DatabaseReference) FirebaseDatabase.getInstance().getReference().child("Products").child(productID).child("stock");
-                            pengurangan.setValue(String.valueOf(stock));
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
 
                 }
             }
@@ -151,6 +146,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
                     Products products=dataSnapshot.getValue(Products.class);
                     productName.setText(products.getPname());
                     productPrice.setText(products.getPrice());
+                    producdiscount.setText(products.getDiscount());
                     productDescription.setText(products.getDescription());
                     Picasso.get().load(products.getImage()).into(productImage);
 

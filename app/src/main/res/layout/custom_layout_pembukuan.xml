@@ -120,48 +120,76 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
+
                     <TextView
+                        android:id="@+id/totaldisplaytrx"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:fontFamily="@font/poesten"
                         android:text="TOTAL TRANSAKSI"
                         android:textColor="@color/notallblack"
-                        android:layout_centerHorizontal="true"
-                        android:textSize="@dimen/_15ssp"
-                        android:fontFamily="@font/poesten"
-                        android:id="@+id/totaldisplaytrx"/>
+                        android:textSize="@dimen/_12ssp" />
+
                     <TextView
                         android:id="@+id/datatotaltrx"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
                         android:layout_below="@id/totaldisplaytrx"
-                        android:text="Rp. 10.200.000"
-                        android:textSize="@dimen/_15ssp"
-                        android:textColor="@color/notallblack"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/_3sdp"
                         android:fontFamily="@font/raleway_light"
-                        android:layout_marginTop="@dimen/_8sdp"/>
+                        android:text="Rp. 10.200.000"
+                        android:textColor="@color/notallblack"
+                        android:textSize="@dimen/_12ssp" />
+
                     <TextView
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:id="@+id/totaldisplayprofit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="TOTAL UNIT"
-                        android:textColor="@color/notallblack"
                         android:layout_below="@id/datatotaltrx"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:textSize="@dimen/_15ssp"
                         android:fontFamily="@font/poesten"
-                        android:id="@+id/totalunitdisplay"/>
+                        android:text="TOTAL PROFIT"
+                        android:textColor="@color/notallblack"
+                        android:textSize="@dimen/_12ssp" />
+
                     <TextView
+                        android:id="@+id/dataprofit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="11111"
+                        android:layout_below="@id/totaldisplayprofit"
                         android:layout_centerHorizontal="true"
-                        android:textColor="@color/notallblack"
+                        android:layout_marginTop="@dimen/_3sdp"
                         android:fontFamily="@font/raleway_light"
-                        android:textSize="@dimen/_15ssp"
+                        android:text="Rp. 10.200.000"
+                        android:textColor="@color/notallblack"
+                        android:textSize="@dimen/_12ssp" />
+
+                    <TextView
+                        android:id="@+id/totalunitdisplay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/dataprofit"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:fontFamily="@font/poesten"
+                        android:text="TOTAL UNIT"
+                        android:textColor="@color/notallblack"
+                        android:textSize="@dimen/_12ssp" />
+
+                    <TextView
                         android:id="@+id/datatotalunit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_below="@id/totalunitdisplay"
-                        android:layout_marginTop="@dimen/_5sdp"/>
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:fontFamily="@font/raleway_light"
+                        android:text="11111"
+                        android:textColor="@color/notallblack"
+                        android:textSize="@dimen/_12ssp" />
 
 
                 </RelativeLayout>

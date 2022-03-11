@@ -23,7 +23,7 @@
             android:layout_below="@id/image1"
             android:layout_centerHorizontal="true"
             android:fontFamily="@font/poesten"
-            android:text="Pembelian Barang"
+            android:text="Pengembalian"
             android:textColor="@color/notallblack"
             android:textSize="@dimen/_15ssp" />
 
@@ -34,7 +34,7 @@
             android:layout_below="@id/textbarang"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/_3sdp"
-            android:text="Rp. 10.000.000"
+            android:text="Rp.____________"
             android:textColor="@color/notallblack"
             android:textSize="@dimen/_20ssp" />
 
@@ -44,20 +44,10 @@
             android:layout_alignParentBottom="true"
             android:layout_marginLeft="@dimen/_20sdp"
             android:layout_marginBottom="@dimen/_5sdp"
-            android:text="Detail Pembelian"
+            android:text="Detail Pengembalian"
             android:textColor="@color/notallblack"
             android:textSize="@dimen/_10ssp" />
-        <TextView
-            android:layout_alignParentEnd="true"
-            android:id="@+id/VIA"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginRight="@dimen/_20sdp"
-            android:layout_marginBottom="@dimen/_5sdp"
-            android:text="VIA BCA"
-            android:textColor="@color/notallblack"
-            android:textSize="@dimen/_10ssp" />
+
 
         <TextView
             android:layout_width="match_parent"
@@ -73,19 +63,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/rel1struk"
-        android:layout_marginBottom="@dimen/_130sdp">
+        android:layout_marginBottom="@dimen/_120sdp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recstruk"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:visibility="invisible" />
 
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/relbottom"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_130sdp"
+        android:layout_height="@dimen/_120sdp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="0dp">
         <TextView
@@ -93,14 +84,6 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_1sdp"
             android:background="@color/colorPrimaryDark"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginRight="@dimen/_20sdp"/>
-        <TextView
-            android:layout_marginTop="@dimen/_50sdp"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_1sdp"
-            android:background="@color/notallblack"
             android:layout_alignParentTop="true"
             android:layout_marginLeft="@dimen/_20sdp"
             android:layout_marginRight="@dimen/_20sdp"/>
@@ -114,33 +97,13 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical">
-                <TextView
-                    android:id="@+id/discplayhargaawal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_20sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:fontFamily="@font/poesten"
-                    android:text="Harga Awal"
-                    android:textColor="@color/notallblack"
-                    android:textSize="@dimen/_13ssp" />
-                <TextView
-                    android:id="@+id/displaydisc"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_20sdp"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:fontFamily="@font/poesten"
-                    android:text="Discount"
-                    android:textColor="@color/notallblack"
-                    android:textSize="@dimen/_13ssp" />
 
                 <TextView
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_20sdp"
-                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
                     android:fontFamily="@font/poesten"
                     android:text="Total"
                     android:textColor="@color/notallblack"
@@ -159,53 +122,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_1sdp"
-                        android:text="1111"
-                        android:layout_marginTop="@dimen/_30sdp"
+                        android:text="__"
+                        android:layout_marginTop="@dimen/_20sdp"
                         android:fontFamily="@font/kronika"
                         android:textColor="@color/notallblack"
                         android:id="@+id/discountext"/>
 
-            <TextView
-
-                android:textSize="@dimen/_13ssp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_1sdp"
-                android:text="1111"
-                android:layout_marginTop="@dimen/_50sdp"
-                android:fontFamily="@font/kronika"
-                android:textColor="@color/notallblack"
-                android:id="@+id/txttotalunitstruk"/>
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
-
-                        <TextView
-                            android:id="@+id/hargaawal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_gravity="end"
-                            android:layout_marginTop="@dimen/_10sdp"
-                            android:layout_marginRight="@dimen/_20sdp"
-                            android:fontFamily="@font/kronika"
-                            android:text="Rp. 10.000.000"
-                            android:textColor="@color/notallblack"
-                            android:textSize="@dimen/_13ssp" />
-
-                        <TextView
-                            android:id="@+id/totaldisc"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_gravity="end"
-                            android:layout_marginTop="@dimen/_30sdp"
-                            android:layout_marginRight="@dimen/_20sdp"
-                            android:fontFamily="@font/kronika"
-                            android:text="Rp. 10.000.000"
-                            android:textColor="@color/notallblack"
-                            android:textSize="@dimen/_13ssp" />
 
                         <TextView
                             android:id="@+id/totalharga2"
@@ -213,10 +139,10 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:layout_gravity="end"
-                            android:layout_marginTop="@dimen/_50sdp"
+                            android:layout_marginTop="@dimen/_20sdp"
                             android:layout_marginRight="@dimen/_20sdp"
                             android:fontFamily="@font/kronika"
-                            android:text="Rp. 10.000.000"
+                            android:text="Rp.________"
                             android:textColor="@color/notallblack"
                             android:textSize="@dimen/_13ssp" />
                     </RelativeLayout>

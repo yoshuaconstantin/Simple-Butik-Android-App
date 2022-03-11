@@ -4,12 +4,12 @@ package com.r0th.shopping.Model;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class Products {
-    private String pname, description, price, image, category, pid, date, time,stock;
+    private String pname, description, price, image, category, pid, date, time,stock,discount,barcode,ogprice;
     public Products()
     {
 
     }
-    public Products(String pname, String description, String price, String image, String category, String pid, String date, String time,String stock) {
+    public Products(String pname, String description, String price, String image, String category, String pid, String date, String time,String stock, String discount, String barcode,String ogprice) {
         this.pname = pname;
         this.description = description;
         this.price = price;
@@ -19,7 +19,19 @@ public class Products {
         this.date = date;
         this.time = time;
         this.stock = stock;
+        this.discount=discount;
+        this.barcode = barcode;
+        this.ogprice = ogprice;
     }
+
+    public String getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(String discount) {
+        this.discount = discount;
+    }
+
     public String getPname() {
         return pname;
     }
@@ -90,5 +102,21 @@ public class Products {
 
     public void setStock(String stock) {
         this.stock = stock;
+    }
+
+    public String getBarcode() {
+        return barcode;
+    }
+
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
+    }
+
+    public String getOgprice() {
+        return ogprice;
+    }
+
+    public void setOgprice(String ogprice) {
+        this.ogprice = ogprice;
     }
 }

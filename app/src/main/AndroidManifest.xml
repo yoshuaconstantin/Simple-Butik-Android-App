@@ -15,14 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Ekart"
         tools:replace="android:theme">
-        <activity android:name="com.r0th.shopping.HomeActivity"
-
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
         <activity android:name="com.r0th.shopping.SettinsActivity" />
+        <activity android:name="com.r0th.shopping.StrukOnlyPrint" />
         <activity android:name="com.r0th.shopping.SearchProductsActivity" />
         <activity android:name="com.r0th.shopping.RegisterActivity" />
         <activity android:name="com.r0th.shopping.ProductDetailsActivity" />
-        <activity android:name="com.r0th.shopping.LoginActivity" />
+        <activity android:name="com.r0th.shopping.HomeActivity" />
         <activity android:name="com.r0th.shopping.ConfirmFinalOrderActivity" />
         <activity android:name="com.r0th.shopping.CartActivity" />
         <activity android:name="com.r0th.shopping.AdminUserProductsActivity" />
@@ -33,7 +31,11 @@
         <activity android:name="com.r0th.shopping.category" />
         <activity android:name="com.r0th.shopping.Pembukuan_admin" />
         <activity android:name="com.r0th.shopping.printstruk" />
-        <activity android:name="com.r0th.shopping.MainActivity"
+        <activity android:name="com.r0th.shopping.returbarang.ProductDetailReturWithState" />
+        <activity android:name="com.r0th.shopping.returbarang.ViewReturBarangAll" />
+        <activity android:name="com.r0th.shopping.returbarang.PilihanReturState" />
+        <activity android:name="com.r0th.shopping.returbarang.StrukReturUang" />
+        <activity android:name="com.r0th.shopping.newlogin"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

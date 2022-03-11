@@ -33,10 +33,10 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 public class AdminAddNewProductActivity extends AppCompatActivity {
-    private String CategoryName, Description, Price, Pname, saveCurrentDate, saveCurrentTime,stock,subcat;
+    private String CategoryName, Description, Price, Pname, saveCurrentDate, saveCurrentTime,stock,subcat,disc,barc,hrgawl;
     private Button AddNewProductButton;
     private ImageView InputProductImage;
-    private EditText InputProductName, inputstock, InputProductPrice;
+    private EditText InputProductName, inputstock, InputProductPrice,discount,barcode,hargabeli;
     private static final int GalleryPick = 1;
     private Uri ImageUri;
     private String productRandomKey, downloadImageUrl;
@@ -57,25 +57,25 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
         CategoryName = getIntent().getExtras().get("category").toString();
         ProductImagesRef = FirebaseStorage.getInstance().getReference().child("Product Images");
         ProductsRef = FirebaseDatabase.getInstance().getReference().child("Products");
-
-
+        barcode = findViewById(R.id.barcode);
+        //discount = findViewById(R.id.productdiscount);
         AddNewProductButton = (Button) findViewById(R.id.add_new_product);
-        InputProductImage = (ImageView) findViewById(R.id.select_product_image);
+        //InputProductImage = (ImageView) findViewById(R.id.select_product_image);
         InputProductName = (EditText) findViewById(R.id.product_name);
-
+        hargabeli=findViewById(R.id.product_OG_price);
         inputstock=findViewById(R.id.product_description);
         InputProductPrice = (EditText) findViewById(R.id.product_price);
         loadingBar = new ProgressDialog(this);
 
         spinner();
 
-        InputProductImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view)
-            {
-                OpenGallery();
-            }
-        });
+//        InputProductImage.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view)
+//            {
+//                OpenGallery();
+//            }
+//        });
 
 
         AddNewProductButton.setOnClickListener(new View.OnClickListener() {
@@ -110,9 +110,12 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
         Price = InputProductPrice.getText().toString();
         Pname = InputProductName.getText().toString();
         subcat = spinner.getSelectedItem().toString();
-        if (ImageUri == null)
+        hrgawl = hargabeli.getText().toString();
+        //disc = discount.getText().toString();
+        barc = barcode.getText().toString();
+        if (TextUtils.isEmpty(barc))
         {
-            Toast.makeText(this, "Gambar Produk Dibutuhkan", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Barcode Produk Dibutuhkan", Toast.LENGTH_SHORT).show();
         }
         else if (TextUtils.isEmpty(stock))
         {
@@ -125,10 +128,13 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
         else if (TextUtils.isEmpty(Pname))
         {
             Toast.makeText(this, "Mohon masukan nama produk", Toast.LENGTH_SHORT).show();
+        }else if (TextUtils.isEmpty(hrgawl)){
+            Toast.makeText(this, "Mohon masukan Harga Beli", Toast.LENGTH_SHORT).show();
         }
         else
         {
-            StoreProductInformation();
+            SaveProductInfoToDatabase();
+            //StoreProductInformation();
         }
 
     }
@@ -245,14 +251,26 @@ public class AdminAddNewProductActivity extends AppCompatActivity {
 
     private void SaveProductInfoToDatabase()
     {
+        Calendar calendar = Calendar.getInstance();
+
+        SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd, yyyy");
+        saveCurrentDate = currentDate.format(calendar.getTime());
+
+        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
+        saveCurrentTime = currentTime.format(calendar.getTime());
+
+        productRandomKey = saveCurrentDate + saveCurrentTime;
         HashMap<String, Object> productMap = new HashMap<>();
         productMap.put("pid", productRandomKey);
         productMap.put("date", saveCurrentDate);
         productMap.put("time", saveCurrentTime);
         productMap.put("description", subcat);
-        productMap.put("image", downloadImageUrl);
+        productMap.put("image", "Null");
         productMap.put("category", CategoryName);
         productMap.put("price", Price);
+        productMap.put("ogprice", hrgawl);
+        productMap.put("barcode", barc);
+        productMap.put("discount","0");
         productMap.put("pname", Pname);
         productMap.put("stock",stock);
 

@@ -11,7 +11,7 @@ import com.r0th.shopping.Interface.ItemClickListner;
 import com.r0th.shopping.R;
 
 public class PembukuanViewHolder  extends RecyclerView.ViewHolder implements View.OnClickListener {
-    public TextView tanggal,hijab,pakaian,aksesoris,alsolat,totaltrx,totalunit;
+    public TextView tanggal,hijab,pakaian,aksesoris,alsolat,totaltrx,totalunit,profit;
     public ItemClickListner listner;
     public PembukuanViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -23,6 +23,7 @@ public class PembukuanViewHolder  extends RecyclerView.ViewHolder implements Vie
         alsolat = itemView.findViewById(R.id.txtalsol);
         totaltrx = itemView.findViewById(R.id.datatotaltrx);
         totalunit = itemView.findViewById(R.id.datatotalunit);
+        profit = itemView.findViewById(R.id.dataprofit);
 
     }
 

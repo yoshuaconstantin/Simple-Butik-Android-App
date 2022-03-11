@@ -1,19 +1,16 @@
-package com.r0th.shopping;
+package com.r0th.shopping.returbarang;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,18 +18,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.r0th.shopping.Model.Products;
+import com.r0th.shopping.ProductDetailsActivity;
+import com.r0th.shopping.R;
 import com.r0th.shopping.ViewHolder.ProductViewHolder;
+import com.r0th.shopping.category;
 import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
 
 import soup.neumorphism.NeumorphCardView;
 
-public class category extends AppCompatActivity {
+public class ViewReturBarangAll extends AppCompatActivity {
     private DatabaseReference ProductsRef;
     DrawerLayout drawerLayout;
     NeumorphCardView cat1,cat2,cat3,cat4;
@@ -40,19 +39,34 @@ public class category extends AppCompatActivity {
     private RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
     String kategori = "Hijab";
+    String state ="null";
+    String nmbrng,qtybrng,hrgbrng,katbrng,statenew ="";
 
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_kategori_lengkap_user);
-        cat1= findViewById(R.id.kategoripakaian);
-        cat2= findViewById(R.id.kategoriaksesoris);
-        cat3= findViewById(R.id.kategorihijab);
-        cat4= findViewById(R.id.kategorialsol);
+        setContentView(R.layout.retur_layout_all);
+        state = getIntent().getStringExtra("state");
+        statenew = getIntent().getStringExtra("statenew");
+        switch (statenew){
+            case "returbarangend":
+                nmbrng = getIntent().getStringExtra("namabrng");
+                qtybrng = getIntent().getStringExtra("hargabrng");
+                hrgbrng = getIntent().getStringExtra("quantitybrng");
+                katbrng = getIntent().getStringExtra("kategorimasuk");
+                break;
+            default:
+
+                break;
+        }
+        cat1= findViewById(R.id.retur_kategoripakaianadm);
+        cat2= findViewById(R.id.retur_kategoriaksesorisadm);
+        cat3= findViewById(R.id.retur_kategorihijabadm);
+        cat4= findViewById(R.id.retur_kategorialsoladm);
         ProductsRef = FirebaseDatabase.getInstance().getReference().child("Products");
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2);
-        recyclerView = findViewById(R.id.relkategori);
+        recyclerView = findViewById(R.id.retur_rel);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(gridLayoutManager);
@@ -60,7 +74,7 @@ public class category extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 kategori ="Pakaian";
-               onStart();
+                onStart();
             }
         });
         cat2.setOnClickListener(new View.OnClickListener() {
@@ -111,9 +125,16 @@ public class category extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
 
-                                Intent intent =new Intent(category.this,ProductDetailsActivity.class);
+                                Intent intent =new Intent(ViewReturBarangAll.this, ProductDetailReturWithState.class);
                                 intent.putExtra("pid",model.getPid());
+                                intent.putExtra("namabrng",nmbrng);
+                                intent.putExtra("hargabrng",qtybrng);
+                                intent.putExtra("quantitybrng",hrgbrng);
+                                intent.putExtra("kategorimasuk",katbrng);
+                                intent.putExtra("statenew",statenew);
+                                intent.putExtra("state",state);
                                 startActivity(intent);
+
                             }
                         });
                     }
